@@ -1,0 +1,94 @@
+\chapter{Geometría Diferencial de las Curvas y Superficies}
+
+\section{Movimientos Rígidos}
+
+Cuando estudiamos Geometría, buscamos entender las propiedades de ciertos objetos (geométricos) que permanecen invariantes bajo ciertos movimientos. En esta primera parte, nos interesará estudiar propiedades de las curvas bajo la acción de movimientos rígidos
+
+\begin{defn}
+Un \textbf{movimiento euclídeo} (también llamado rígido) es una función $f:\RR^n\to\RR^n$ que preserva las distancias. Es decir $||f(x)-f(y)||=||x-y||$ para todos $x,y\in\RR^n$. Al conjunto de movimientos euclídeos de $\RR^n$ lo denotaremos por $\Iso(n)$.
+\end{defn}
+
+\begin{obs}
+Notar que, por definición, la distancia entre dos puntos es un invariante euclídeo.
+\end{obs}
+
+Nuestro primer objetivo será caracterizar a los movimientos rígidos. Para eso, recordemos un par de hechos básicos de Álgebra Lineal. Una matriz $A\in\GL_n(\RR)$ se dice \textbf{ortogonal} si satisface que $AA^t=I$. Se define el \textbf{grupo ortogonal} como $$O(n)=\{A\in\GL_{n}(\RR) : AA^{t}=I\}$$ Es fácil probar que $O(n)$ es de hecho un grupo. Recordemos también que $A\in\GL_n(\RR)$ es ortogonal si y sólo si $\langle Ax,Ay\rangle = \langle x,y\rangle$ para todos $x,y\in\RR^n$. Por lo tanto, si $x\in\RR^n$ y $A\in O(n)$ tenemos que $\norm{Ax}^2 = \langle Ax,Ax\rangle = \langle x,x\rangle = \norm{x}^2$. Por lo tanto, $\norm{Ax}=\norm{x}$.
+
+Notemos que si $A\in O(n)$ y $b\in\RR^n$, entonces la función $f:\RR^n\to\RR^n$ dada por $f(x)=Ax+b$ es un movimiento eucídeo. En efecto, esto se debe a que si $x,y\in\RR^n$, entonces $\norm{f(x)-f(y)} = \norm{A(x-y)} = \norm{x-y}$.
+
+\begin{lem}
+\label{lem::ptomedio}
+Sean $x,y,z\in\RR^n$. Si $\norm{x-z} = \norm{z-y} = \frac{1}{2}\norm{x-y}$, entonces $z=\dfrac{x+y}{2}$. Esto es, la existencia y unicidad del punto medio entre dos puntos $x,y\in\RR^n$.
+\begin{proof}
+Si $x=z$ o $y=z$, no hay nada que probar. Por otra parte, si $z\neq x,y$, tenemos que $\norm{x-z}+\norm{z-y} = \norm{x-y} = \norm{(x-z)+(z-y)}$. Es decir, se da la igualdad en la desigualdad triangular. Pero esto implica que existe un escalar $\lambda\in\RR_{>0}$ tal que $x-z = \lambda(z-y)$. Tomando norma, se sigue que $|\lambda|=1$ y así $x-z=z-y$. Por lo tanto, $z=\dfrac{x+y}{2}$. Como queríamos probar.
+\end{proof}
+\end{lem}
+
+\begin{teo}[Mazur-Ulam]
+Sea $f:\RR^n\to\RR^n$. Entonces, $f$ es un movimiento euclídeo si y sólo si es de la forma $f(x)=Ax+b$ con $A\in O(n)$, $b\in\RR^n$. Más aún, esta expresión es única. Es decir, si $f(x)=A'x+b'$ con $A'\in O(n)$ y $b'\in\RR^n$, entonces $A=A'$ y $b=b'$.
+\begin{proof}
+\hfill
+
+$(\Longleftarrow)$ Ya lo probamos.
+
+$(\Longrightarrow)$ Probemos primero que $f$ satisface la siguiente identidad: \begin{equation}f((1-t)x+ty) = (1-t)f(x) + tf(y) \;\forall t\in\RR, x,y\in\RR^n\label{eq::afin}\end{equation}
+
+Veamos que para $t=\dfrac{1}{2}$ se satisface ~\ref{eq::afin}. En efecto, como $f$ es euclídea, se cumple que: $$\norm{f(x)-f\left(\dfrac{x+y}{2}\right)} = \dfrac{1}{2}\norm{f(x)-f(y)} = \norm{f\left(\dfrac{x+y}{2}\right)-f(y)}$$ y por el Lema anterior~\ref{lem::ptomedio} se sigue que $f\left(\dfrac{x+y}{2}\right)$ es el punto medio entre $f(x)$ y $f(y)$.
+
+Veamos ahora que la identidad ~\ref{eq::afin} se satisface para los racionales diádicos. Es decir, $t=\dfrac{\ell}{2^n}$ donde $\ell\in\{0,1,\ldots, 2^n\}$ y $n\in\NN_{0}$. Para esto, procederemos por inducción en $n$. Si $n=0$ es trivial. Supongamos entonces $n>0$ y $\ell\in\{0,1,\ldots, 2^n\}$. Si $\ell$ es par, entonces $t=\dfrac{(\ell/2)}{2^{n-1}}$ y por hipótesis inductiva ya estamos. Si no, podemos escribir $\ell = 2\ell'+1$. En ese caso, tenemos que $\dfrac{\ell'}{2^{n-1}} < \dfrac{\ell}{2^n} < \dfrac{\ell'+1}{2^{n-1}}$ y $\dfrac{\ell}{2^n}$ es el promedio de los extremos. Por hipótesis inductiva, sabemos que se cumplen: \begin{align*}f\left(\left(1-\dfrac{\ell'}{2^{n-1}}\right) x + \dfrac{\ell'}{2^{n-1}}y\right) &= \left(1-\dfrac{\ell'}{2^n}\right) f(x) + \dfrac{\ell'}{2^{n-1}}f(y) \\ f\left(\left(1-\dfrac{\ell'+1}{2^{n-1}}\right) x + \dfrac{\ell'+1}{2^{n-1}}y\right) &= \left(1-\dfrac{\ell'+1}{2^n}\right) f(x) + \dfrac{\ell'+1}{2^{n-1}}f(y) \end{align*} Sumando ambas ecuaciones y usando que para $t=\dfrac{1}{2}$ el resultado vale, se sigue lo deseado.
+
+Ahora bien, $f$ es continua por ser una isometría. Por la continuidad y la densidad de los diádicos en el intervalo $[0,1]$ se sigue que se satisface la identidad ~\ref{eq::afin} para todo $t\in [0,1]$. Si $t>1$ se sigue que $y$ está entre $x$ y $z=(1-t)x+ty$ con $y = \left(1-\dfrac{1}{t}\right)x + \dfrac{1}{t}z$ y ahí vale el resultado pues $\dfrac{1}{t}\in[0,1]$. Para $t<0$ es análogo.
+
+Consideremos entonces la función $g:\RR^n\to\RR^n$ dada por $g(x)=f(x)-f(0)$. Veamos que $g$ es una transformación lineal. Notemos que por la identidad ~\ref{eq::afin} se tiene que $f(tx)=f((1-t)0 + tx) = (1-t)f(0) + tf(x)$. Manipulando esa ecuación obtenemos $g(tx)=f(tx)-f(0)=t(f(x)-f(0))=tg(x)$. Ahora bien, notemos que $\dfrac{g(x+y)}{2}=g\left(\dfrac{x+y}{2}\right) = f\left(\dfrac{x+y}{2}\right)-f(0) = \dfrac{f(x)}{2}+\dfrac{f(y)}{2}-f(0) = \dfrac{g(x)+g(y)}{2}$. Como $g$ es lineal, debe existir una matriz $A\in\RR^{n\times n}$ tal que $g(x)=Ax$ y así tenemos que $f(x)=Ax+f(0)$.
+Por lo tanto, sabemos que $\norm{A(x-y)} = \norm{f(x)-f(y)} = \norm{x-y}$. En particular $A$ es inversible. Además, $\norm{A(x-y)}^2 = \norm{Ax}^2 + \norm{Ay}^2 - 2\langle Ax,Ax\rangle$ y $\norm{x-y}^2 = \norm{x}^2 + \norm{y}^2 - 2\langle x,y\rangle$. Se sigue entonces que $\langle Ax,Ay\rangle = \langle x,y\rangle$. Esto implica que $A$ es ortogonal, como queríamos.
+
+Para concluir, si $f(x)=Ax+b=A'x+b'$, entonces $b=f(0)=b'$ y así $(A-A')x=0$ para todo $x\in\RR^n$, lo que implica que $A=A'$.
+\end{proof}
+\end{teo}
+
+\begin{cor}
+El conjunto $\Iso(n)$ es un subgrupo del grupo de las biyecciones $\RR^n\to\RR^n$.
+\begin{proof}
+Claramente la identidad es una isometría. Si $f,g\in\Iso(n)$, entonces por el Teorema de Mazur-Ulam, $f(x)=A_fx+b_f$, $g(x)=A_gx+b_g$ y entonces la composición $(f\circ g)(x) = A_f(A_gx+b_g)+b_f = A_fA_gx + (A_fb_g+b_f)$ también es una isometría pues $A_fA_g\in O(n)$ por ser $O(n)$ un grupo. Por último, como la inversa de $A_f$ es $A_f^t$ es fácil verificar que si $g(x) = A_f^t x - A_f^t b_f$ tenemos que $f\circ g = g\circ f = 1$, y así $g\in\Iso(n)$ es la inversa de $f$.
+\end{proof}
+\end{cor}
+
+Por el Teorema de Mazur-Ulam, podemos escribir a cada $f\in\Iso(n)$ de la forma $f(x)=A_fx+b_f$ con $A_f\in O(n)$ y $b_f\in\RR^n$. Como $A_f\in O(n)$ tenemos que $A_f A_f^t = I$ y así debemos tener que $\det A_f = \pm 1$. Consideramos $\Iso^+(n) = \{f\in\Iso(n) : \det A_f = 1\}$ y $\Iso^-(n) = \{f\in\Iso(n):\det A_f = -1\}$. Notemos que claramente $\Iso^+(n)\subseteq\Iso(n)$ es un subgrupo. Además, si recordamos que el \textbf{grupo especial ortogonal} se define como $\mathrm{SO}(n)=\{A\in O(n) : \det A = 1\}$ se tiene que $\Iso^+(n)$ se corresponde con $\mathrm{SO}(n)$. A las transformaciones de $\Iso^+(n)$ se las denomina \textbf{movimientos directos}. Es claro que $\Iso^+(n)\sqcup\Iso^-(n)=\Iso(n)$ y que $\Iso^+(n)$ está en biyección con $\Iso^-(n)$ simplemente tomando $M\in O(n)$ con $\det M = -1$ y considerando la aplicación $Ax+b\mapsto MBx+b$. Finalmente, es fácil ver que la aplicación $\pi:\Iso(n)\to O(n)$ dada por $\pi(f)=A_f$ es un morfismo de grupos cuyo núcleo consiste en las traslaciones.
+
+\section{Curvas en Espacios Euclídeos}
+
+Para afrontar el aspecto diferencial del estudio de las curvas necesitaremos asumir alguna condición de regularidad con respecto a las derivadas. De ahora en más, fijemos $k\in \NN_0\cup\{\infty\}$ a gusto y cada vez que digamos \textit{diferenciable} nos estaremos refiriendo a \textit{de clase} $\mathscr{C}^k$. Además, cada vez que escribamos $(a,b)$ nos referiremos a un intervalo abierto donde posiblemente los extremos son $\pm\infty$.
+
+\begin{defn}
+Una \textbf{curva regular} en $\RR^n$ es una función diferenciable $\sigma:I\to\RR^n$ (donde $I\subseteq\RR$ es un intervalo abierto) de modo tal que $\sigma'(t)\neq 0$ para todo $t\in I$, y se dice que $\sigma$ es una \textbf{parametrización} de la curva. La \textbf{traza} de una curva es la imagen de una parametrización de la misma.
+\end{defn}
+
+\begin{lem}
+Sea $\sigma:(a,b)\to\RR^n$ una curva regular. Si $c\in (a,b)$, entonces existe $\eps>0$ tal que $(c-\eps,c+\eps)\subseteq (a,b)$ y $\left.\sigma\right|_{(c-\eps,c+\eps)}$ es inyectiva. Es decir, toda curva es localmente inyectiva.
+\begin{proof}
+Supongamos que el enunciado es falso. Es decir, existe $c\in (a,b)$ tal que para todo $m\in\NN$, en cada intervalo $\left(c-\dfrac{1}{m},c+\dfrac{1}{m}\right)$ existen $x_m<y_m$ de tal modo que $\sigma(x_m)=\sigma(y_m)$ y además $\displaystyle\lim_{m\to\infty}x_m = c = \displaystyle\lim_{m\to \infty}y_m$. Tomemos $i\in\{1,\ldots , n\}$. Como $\sigma_i(x_m)=\sigma_i(y_m)$, por el Teorema del Valor Medio, existe $\xi_m^{(i)}\in (x_m,y_m)$ tal que $\sigma_i'(\xi_m^{(i)})=0$. Claramente, $\lim_{m\to\infty}\xi_m^{(i)}=c$. Por lo tanto (asumiendo una regularidad de clase $\mathscr{C}^1$ al menos) tendremos que $0=\displaystyle\lim_{m\to\infty}\sigma_i'(\xi_m^{(i)})=\sigma_i'(c)$. Por lo tanto, $\sigma'(c)=0$, contradiciendo que $\sigma$ es una curva regular.
+\end{proof}
+\end{lem}
+
+\begin{cor}
+Si $\sigma:(a,b)\to\RR^n$ es una curva regular, entonces todo punto de $\RR^n$ tiene un número finito de preimágenes en cada intervalo cerrado y acotado $[c,d]\subseteq (a,b)$.
+\begin{proof}
+En virtud del lema anterior, para cada $x\in [c,d]$ existe $\eps_x>0$ tal que $\left.\sigma\right|_{(x-\eps_x,x+\eps_x)}$ es inyectiva. El conjunto $\{(x-\eps_x,x+\eps_x) : x\in [c,d]\}$ es claramente un cubrimiento por abiertos de $[c,d]$, y por la compacidad, deben existir $x_1,\ldots , x_\ell$ de modo tal que $[c,d]\subseteq\displaystyle\bigcup_{i=1}^{\ell} (x_i-\eps_{x_i},x_i+\eps_{x_i})$. Por lo tanto, si $v\in\RR^n$, se sigue que $$\sigma^{-1}(v)\cap [c,d] \subseteq \displaystyle\bigcup_{i=1}^\ell (x_i-\eps_{x_i},x_i+\eps_{x_i})\cap \sigma^{-1}(v)$$ Como la restricción de $\sigma$ a cada intervalo $(x_i-\eps_{x_i},x_i+\eps_{x_i})$ es inyectiva, esa unión tiene a lo sumo $\ell$ elementos. Y estamos.
+\end{proof}
+\end{cor}
+
+\begin{ex}
+Por lo general es falso que la fibra sea finita si no nos restringimos a un compacto. Por ejemplo, $\sigma:\RR\to\RR^2$ dada por $\sigma(t)=(\cos t,\sen t)$ tiene fibra $\sigma^{-1}((x_0,y_0)) = \{t_0 + 2k\pi : (\cos(t_0),\sen(t_0))=(x_0,y_0), k\in\ZZ\}$, que es infinita para cualquier punto $(x_0,y_0)$ en la circunferencia unitaria. Esto nos muestra que una curva posee más información que solamente su traza. Además, tenemos varias parametrizaciones distintas que describen una misma traza, como por ejemplo $\sigma_1:(0,2\pi)\to \RR^2$ dada por $\sigma_1(t)=(\cos(t),\sen(t))$ o $\sigma_2:(0,1)\to \RR^2$ dada por $\sigma_2(t)=(\cos(2\pi t),\sen(2\pi t))$.
+
+\textcolor{red}{Agregar dibujos}
+\end{ex}
+
+\begin{defn}
+Una \textbf{reparametrización} es una función $u:(a,b)\to (c,d)$ biyectiva, diferenciable y con inversa diferenciable.
+\end{defn}
+
+\begin{defn}
+Si $\sigma:(a,b)\to\RR^n$ es una curva regular y $u:(c,d)\to (a,b)$ es una reparametrización, entonces $\sigma\circ u:(c,d)\to\RR^n$ es una curva regular y se dice que $\sigma\circ u$ es una \textbf{reparametrización} de $\sigma$.
+\end{defn}
+
+Como ya vimos, una curva posee más información que meramente su traza. Vamos a estudiar propiedades de las curvas que sean invariantes por movimientos rígidos y por reparametrización.
