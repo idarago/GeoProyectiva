@@ -60,8 +60,20 @@ Por el Teorema de Mazur-Ulam, podemos escribir a cada $f\in\Iso(n)$ de la forma 
 Para afrontar el aspecto diferencial del estudio de las curvas necesitaremos asumir alguna condición de regularidad con respecto a las derivadas. De ahora en más, fijemos $k\in \NN_0\cup\{\infty\}$ a gusto y cada vez que digamos \textit{diferenciable} nos estaremos refiriendo a \textit{de clase} $\mathscr{C}^k$. Además, cada vez que escribamos $(a,b)$ nos referiremos a un intervalo abierto donde posiblemente los extremos son $\pm\infty$.
 
 \begin{defn}
-Una \textbf{curva regular} en $\RR^n$ es una función diferenciable $\sigma:I\to\RR^n$ (donde $I\subseteq\RR$ es un intervalo abierto) de modo tal que $\sigma'(t)\neq 0$ para todo $t\in I$, y se dice que $\sigma$ es una \textbf{parametrización} de la curva. La \textbf{traza} de una curva es la imagen de una parametrización de la misma.
+Una \textbf{curva paramétrica} en $\RR^n$ es un conjunto $\mathscr{C}\subseteq\RR^n$ junto con una función diferenciable $\sigma:I\to\RR^n$ (donde $I\subseteq\RR$ es un intervalo abierto) de modo tal que la imagen de $\sigma$ es $\mathscr{C}$. Se dice que $\sigma$ es una \textbf{parametrización} de la curva. La \textbf{traza} de una curva es la imagen de una parametrización de la misma. Decimos que la parametrización es \textbf{regular} en $t\in I$ si $\sigma'(t)\neq 0$. En caso contrario, se dice que la curva es \textbf{singular} en $t$. Si la curva es regular en todo punto de $I$ decimos que es una \textbf{curva regular}.
 \end{defn}
+
+\begin{ex}\hfill
+
+\begin{itemize}\item Si $p\in\RR^n, v\in\RR^n\smallsetminus\{0\}$, la curva parametrizada por $\alpha:I\to\RR^n$, $\alpha(t)=p+tv$ es un segmento de recta que pasa por $p$ y tiene dirección $v$. Es regular pues $\alpha'(t) = v$. Esta curva es de clase $\mathscr{C}^\infty$.
+\item Los gráficos de funciones son otro ejemplo clásico de curvas parametrizadas. Si $f:I\to\RR$ es una función de clase $\mathscr{C}^k$ entonces el gráfico $$\mathrm{Graf}(f) = \{(t,f(t)) : t\in I\}$$ es una curva parametrizada por $\alpha:I\to\RR^2$, $\alpha(t)=(t,f(t))$. Trivialmente es regular pues $\alpha'(t)=(1,f'(t))\neq (0,0)$ y es de clase $\mathscr{C}^k$.
+\item Podemos dar curvas planas en términos de \textbf{coordenadas polares}. Es decir, parametrizamos $\alpha:I\to\RR^n$, $\alpha(\theta)=(\rho(\theta)\cos(\theta),\rho(\theta)\sen(\theta))$, donde $\rho:I\to\RR_{>0}$ es una función de clase $\mathscr{C}^k$. Veamos que $\alpha$ parametriza a una curva regular. En efecto, $\alpha'(\theta) = \rho'(\theta)(\cos(\theta),\sen(\theta)) + \rho(\theta)(-\sen(\theta),\cos(\theta))$. Como $(\cos(\theta),\sen(\theta))$ y $(-\sen(\theta),\cos(\theta))$ son vectores unitarios ortogonales, por Pitágoras tenemos que $\norm{\alpha'(\theta)}^2 = \abs{\rho(\theta)}^2 + \abs{\rho'(\theta)}^2$. Eso implica que $\alpha'$ sólo se anula si $\rho(\theta)=\rho'(\theta)=0$ y eso no puede pasar pues $\rho$ siempre es positiva.
+\item La parametrización es muy importante. El conjunto $\mathscr{C}=\{(x,y)\in\RR^2:x=y\}$ admite muchas parametrizaciones. Por ejemplo, $\alpha,\beta:\RR\to\RR^2$, $\alpha(t)=(t,t)$ y $\beta(t)=(t^3,t^3)$. La primera es regular pues $\alpha'(t)=(1,1)$ mientras que la segunda no, pues $\beta'(t)=(3t^2,3t^2)$ es singular en $t=0$.
+\item Consideremos la curva parametrizada por $\alpha:\RR\to\RR^2$, $\alpha(t)=(t^2,t^3)$. Esta curva no es regular, pues $\alpha'(t)=(2t,3t^2)$ es singular en $t=0$. Gráficamente, se puede ver que en el punto $t=0$ la curva no admite una recta tangente.
+
+\textcolor{red}{Agregar dibujos de cada ejemplo}
+\end{itemize}
+\end{ex}
 
 \begin{lem}
 Sea $\sigma:(a,b)\to\RR^n$ una curva regular. Si $c\in (a,b)$, entonces existe $\eps>0$ tal que $(c-\eps,c+\eps)\subseteq (a,b)$ y $\left.\sigma\right|_{(c-\eps,c+\eps)}$ es inyectiva. Es decir, toda curva es localmente inyectiva.
@@ -88,7 +100,94 @@ Una \textbf{reparametrización} es una función $u:(a,b)\to (c,d)$ biyectiva, di
 \end{defn}
 
 \begin{defn}
-Si $\sigma:(a,b)\to\RR^n$ es una curva regular y $u:(c,d)\to (a,b)$ es una reparametrización, entonces $\sigma\circ u:(c,d)\to\RR^n$ es una curva regular y se dice que $\sigma\circ u$ es una \textbf{reparametrización} de $\sigma$.
+Si $\sigma:(a,b)\to\RR^n$ es una curva regular y $u:(c,d)\to (a,b)$ es una reparametrización, entonces $\sigma\circ u:(c,d)\to\RR^n$ es una curva regular y se dice que $\sigma\circ u$ es una \textbf{reparametrización} de $\sigma$. Decimos $u$ que es una \textbf{reparametrización directa} si $u'(t)>0 \;\forall t\in (c,d)$.
 \end{defn}
 
 Como ya vimos, una curva posee más información que meramente su traza. Vamos a estudiar propiedades de las curvas que sean invariantes por movimientos rígidos y por reparametrización.
+
+\section{Invariantes}
+
+\begin{defn}
+Sea $\mathscr{C}(n)$ el conjunto de pares $(\sigma,s_0)$ con $\sigma_I\to\RR^n$ una curva regular y $s_0\in I$. Un miembro del conjunto $\mathscr{C}(n)$ se llama un \textbf{elemento de curva}.
+\end{defn}
+
+\begin{defn}
+Un \textbf{invariante escalar} es una función $V:\mathscr{C}(n)\to\RR$ que permanece invariante bajo movimientos rígidos y reparametrizaciones directas. Es decir, tal que $V(f\circ\sigma,s_0) = V(\sigma,s_0)$ para todo $f\in\Iso^+(n)$ y además $V(\sigma\circ u,u^{-1}(s_0)) = V(\sigma,s_0)$ para toda reparametrización directa $u:(a,b)\to \mathrm{Dom}\sigma$.
+\end{defn}
+
+\begin{defn}
+Un \textbf{invariante vectorial} es una función $V:\mathscr{C}(n)\to\RR^n$ que cumple que $V(f\circ\sigma,s_0)=A_f V(\sigma,s_0)$ para todo $f\in\Iso^+(n)$ y $V(\sigma\circ u,u^{-1}(s_0)) = V(\sigma,s_0)$ para toda reparametrización directa $u:(a,b)\to\mathrm{Dom}\sigma$.
+\end{defn}
+
+\begin{comm}
+Dado un grupo $G$ y dos conjuntos $X,Y$ provistos de acciones $G\acts X$, $G\acts Y$, una función $f:X\to Y$ se dice \textbf{equivariante} si $f(g\cdot x)=g\cdot f(x)$ para todos $x\in X,g\in G$. Es decir, el siguiente diagrama conmuta:
+
+\begin{center}
+\begin{tikzcd}
+X \arrow[]{r}[font=\normalsize]{\cdot g}\arrow[]{d}[font=\normalsize, left]{f} & X\arrow[]{d}[font=\normalsize, right]{f} \\
+Y \arrow[]{r}[font=\normalsize]{\cdot g} & Y
+\end{tikzcd}
+\end{center}
+
+Si consideramos a $\Iso^+(n)$ actuando en $\mathscr{C}(n)$ vía $f\cdot (\sigma,s_0) = (f\circ\sigma,s_0)$ y a $\Iso^+(n)$ actuando en $\RR^n$ por $f\cdot x = A_f x$, entonces un invariante vectorial $V:\mathscr{C}(n)\to\RR^n$ es simplemente un morfismo equivariante respecto de estas acciones que es invariante bajo reparametrizaciones directas.
+\end{comm}
+
+\begin{defn}
+Dos elementos de curva $(\sigma,s_0),(\tau,t_0)$ definen el mismo \textbf{germen} si existe $I\subseteq \mathrm{Dom}\sigma\cap\mathrm{Dom}\tau$ tal que $s_0=t_0\in I$ y además $\left.\sigma\right|_{I} = \left.\tau\right|_{I}$. Lo notaremos $(\sigma,s_0)\sim (\tau,t_0)$. Claramente $\sim$ es una relación de equivalencia y llamaremos al conjunto de clases de equivalencia (es decir, $\mathscr{C}(n)/\sim$) el conjunto de \textbf{gérmenes}. Los gérmenes nos proveeran del contexto adecuado para estudiar propiedades locales. \textcolor{red}{Agregar dibujo de dos curvas en un mismo germen}
+\end{defn}
+
+\begin{obs}\label{obs::germenderivadas}
+Sean $(\sigma,s_0)$ y $(\tau,t_0)$ dos elementos de un mismo germen. Entonces, $\sigma'(s_0)=\tau'(t_0)$. En efecto, notemos que como están en el mismo germen existe un intervalo $I$ tal que $s_0=t_0$ y $\left.\sigma\right|_{I}=\left.\tau\right|_{I}$, y así el cociente incremental coincide en un entorno de $s_0=t_0$. Tomando límite se sigue lo deseado.
+\end{obs}
+
+\begin{defn}
+Un invariante $V$ (escalar o vectorial) se dice \textbf{local} si para todo par de elementos de curva $(\sigma,s_0),(\tau,t_0)\in\mathscr{C}(n)$ vale que: $$(\sigma,s_0)\sim(\tau,t_0) \Longrightarrow V(\sigma,s_0) = V(\tau,t_0)$$ Es decir, es un invariante que es constante en los gérmenes.
+\end{defn}
+
+\begin{defn}
+Un invariante $V$ (escalar o vectorial) se dice \textbf{diferencial} de orden menor o igual que $d$ si existe una función $W:(\RR^n)^{d+1}\to \RR$ ó $\RR^n$ (según si $V$ es escalar o vectorial respectivamente) tal que para todo elemento de curva $(\sigma,s_0)\in\mathscr{C}(n)$ se tiene que: $$V(\sigma,s_0)=W(\sigma(s_0),\sigma'(s_0),\ldots ,\sigma^{(d)}(s_0))$$ Decimos que un invariante diferencial es de orden $d$ si es de orden menor o igual que $d$ pero no de orden menor o igual que $d-1$.
+\end{defn}
+
+\begin{obs} Por la Observación ~\ref{obs::germenderivadas}, es claro que todo invariante diferencial es local.
+\end{obs}
+
+Nuestro objetivo ahora será tratar de caracterizar a los invariantes diferenciales. Empecemos con los invariantes de orden bajo. 
+
+\begin{prop}
+Sea $V$ un invariante escalar de orden $0$. Entonces $V$ es constante.
+\begin{proof}
+Sea $V:\mathscr{C}(n)\to \RR$ un invariante escalar diferencial de orden $0$. Luego, existe $W:\RR^n\to\RR$ tal que $V(\sigma,s_0)=W(\sigma(s_0))$. Notemos que: $$W(f(\sigma(s_0))) = V(f\circ\sigma,s_0)=V(\sigma,s_0)=W(\sigma(s_0))$$ para todo $(\sigma,s_0)\in\mathscr{C}(n)$, $f\in\Iso^+(n)$. Esto implica que $W(f(v))=W(v)$ para todo $v\in\RR^n$, $f\in\Iso^+(n)$. Ahora, si $w\in\RR^n$ es arbitrario, sea $f(x)=x+(w-v)$. Claramente se cumple que $f\in\Iso^+(n)$, $f(v)=w$ y así $W(w)=W(f(v))=W(v)$. Es decir, $W$ es constante. Como queríamos.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+Sea $V$ un invariante vectorial de orden $0$. Entonces $V\equiv 0$.
+\begin{proof}
+Sea $V:\mathscr{C}(n)\to\RR^n$ un invariante vectorial diferencial de orden $0$. Luego, existe $W:\RR^n\to\RR^n$ tal que $V(\sigma,s_0)=W(\sigma(s_0))$. Notemos que: $$W(f(\sigma(s_0))) = V(f\circ\sigma,s_0)=A_f V(\sigma,s_0) = A_f W(\sigma,s_0)$$ para todo $(\sigma,s_0)\in\mathscr{C}(n)$, $f\in\Iso^+(n)$. Esto implica que $W(f(v))=A_f W(v)$ para todo $v\in\RR^n$, $f\in\Iso^+(n)$. Ahora, sea $h:\RR^n\to\RR^n$ la traslación $h(x)=x-v$. Claramente $A_h=I$ y así $W(v)=W(0)$. Es decir, $W$ es constante. Pero más aún, sea $g:\RR^n\to\RR^n$ la transformación $g(x)=Ax$ con $A\in\mathrm{SO}(n)$. Por lo tanto, $AW(0)=W(0)$ para toda $A\in\mathrm{SO}(n)$. Esto implica que $W(0)=0$ pues tomando $A$ como una matriz que tiene ceros fuera de la diagonal y un $-1$ en el $i$-ésimo lugar, $-1$ en otro lugar de la diagonal arbitrario y el resto de la diagonal con $1$, obtenemos que $-W(0)_i = (AW(0))_i = W(0)_i$. Y estamos.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+Sea $V$ un invariante escalar de orden $1$. Entonces $V$ es constante.
+\begin{proof}
+Sea $W:(\RR^n)^2\to\RR$ con $V(\sigma,s_0)=W(\sigma(s_0),\sigma'(s_0))$. Sea $(\sigma,s_0)\in\mathscr{C}(n)$ y consideremos $f_1:\RR^n\to\RR^n$, $f_1(x)=x-\sigma(s_0)$. Notemos que por regla de la cadena $(f\circ\sigma)'(s_0) = \sigma'(s_0)$ y así $V(\sigma,s_0)=V(f\circ\sigma,s_0)=W(0,\sigma'(s_0))$. Entonces, si defino $W_1:\RR^n\to\RR$ por $W_1(v)=W(0,v)$, la función $V$ queda determinada totalmente por $W_1$.
+Supongamos sin pérdida de la generalidad que $\sigma(s_0)=0$, y sea $A\in\mathrm{SO}(n)$. Consideremos $f_2:\RR^n\to\RR^n$ la isometría dada por $f_2(x)=Ax$. Entonces, es claro que: $$W_1(A\sigma'(s_0)) = W(0,A\sigma'(s_0)) = V(f_2\circ\sigma,s_0) = V(\sigma,s_0)=W(0,\sigma'(s_0))=W_1(\sigma'(s_0))$$
+Es decir, para todos $(\sigma,s_0)\in\mathscr{C}(n)$ tal que $\sigma(s_0)=0$ y $A\in\mathrm{SO}(n)$, tenemos que $W_1(A\sigma'(s_0))=W_1(\sigma'(s_0))$. Esto implica que para todo $v\in\RR^n\smallsetminus\{0\}$ y $A\in\mathrm{SO}(n)$, tenemos que $W_1(v)=W_1(Av)$. Ahora bien, el conjunto $\{Av:A\in\mathrm{SO}(n)\}$ es simplemente la bola de centro $0$ y radio $\norm{v}$. Esto quiere decir que $W_1$ es una función radial. O sea, existe $W_2:\RR_{>0}\to\RR$ tal que $W_1(v)=W_2(\norm{v})$. Por lo tanto, $V(\sigma,s_0)=W_2(\norm{\sigma'(s_0)})$. Consideremos ahora una reparametrización directa $u:(c,d)\to\mathrm{Dom}\sigma$. Entonces: $$W_2(\norm{\sigma'(s_0)}) = V(\sigma,s_0)=V(\sigma\circ u,u^{-1}(s_0)) = W_2\left(\abs{u'(u^{-1}(s_0))}\norm{\sigma'(s_0)}\right)$$ Luego, para todo $v\in\RR^n\smallsetminus\{0\}$ y $u:(c,d)\to\mathrm{Dom}\sigma$ reparametrización directa, tenemos que $W_2(\norm{v})=W_2(\abs{u'(u^{-1}(s_0))}\norm{v})$. Tomando la reparametrización $u(t)=\lambda t$, se sigue que $W_2(\norm{v})=W_2(\lambda\norm{v})$ para todo $v\in\RR^n\smallsetminus\{0\}$, $\lambda>0$. Tomando $v$ de norma $1$ y $\lambda>0$ arbitrario, resulta que $W_2$ es constante y así $V$ debe serlo. Como queríamos probar.
+\end{proof}
+\end{prop}
+
+Hasta ahora todos los invariantes son triviales. Los invariantes vectoriales de orden $1$ son los primeros que son interesantes, pero para aliviar la notación, primero consideremos la siguiente definición:
+
+\begin{defn}
+Sea $(\sigma,s_0)\in\mathscr{C}(n)$ un elemento de curva. Se define el \textbf{vector tangente} a $\sigma$ en $s_0$ como $\tau(\sigma,s_0)=\dfrac{\sigma'(s_0)}{\norm{\sigma'(s_0)}}$. Cuando $n=2$, podemos definir el \textbf{vector normal} a $\sigma$ en $s_0$ como $\eta(\sigma,s_0) = (-\tau(\sigma,s_0)_2, \tau(\sigma,s_0)_1)$ es el único vector unitario que completa a una base a $\tau(\sigma,s_0)$ de manera tal que "`preserve la orientación"' (es decir, que el determinante de la matriz cuyas columnas son $\tau(\sigma,s_0)$ y $\eta(\sigma,s_0)$ sea $1$).
+\end{defn}
+
+\begin{prop}
+Sea $V$ un invariante vectorial de orden $1$. Entonces, si $n\geq 3$ tendremos que $V(\sigma,s_0) = \lambda\tau(s_0)$ con $\lambda\in\RR$, mientras que si $n=2$, $V(\sigma,s_0)=a\tau(\sigma,s_0)+b\eta(\sigma,s_0)$ con $a,b\in\RR$.
+\begin{proof}
+Sea $W:(\RR^n)^2\to\RR^n$ tal que $V(\sigma,s_0)=W(\sigma(s_0),\sigma'(s_0))$. Consideremos $g:\RR^n\to\RR^n$ dada por $f(x)=A(x-\sigma(s_0))$ donde $A\in\mathrm{SO}(n)$. Por lo tanto, se tiene que $AV(\sigma,s_0)=V(g\circ\sigma,s_0) =W(0,A\sigma'(s_0))$. Consideremos $A$ una rotación que lleva $\sigma'(s_0)$ a $\norm{\sigma'(s_0)}e_1$ (equivalentemente, $\tau(\sigma,s_0)$ a $e_1$). Esta rotación en $n=2$ queda unívocamente determinada como la matriz cuya inversa tiene por columnas a $\tau(\sigma,s_0)$ y $\eta(\sigma,s_0)$, mientras que en $n\geq 3$ tenemos mayor libertad y no queda unívocamente determinada. \textcolor{red}{Dibujar la rotación}. Se sigue que $V(\sigma,s_0) = A^{-1}W(0,\norm{\sigma'(s_0)}e_1)$. Sea $u:\mathrm{Dom}\sigma\to\mathrm{Dom}\sigma$ la reparametrización directa dada por $u(t)=s_0+\dfrac{t}{\norm{\sigma'(s_0)}}$. Como $V$ es un invariante, tenemos que: $$V(\sigma,s_0)=V(\sigma\circ u,0)=W(0,\sigma'(s_0)u'(0)) = W(0,\tau(\sigma,s_0))$$ Si tengo entonces $(\sigma,s_0)$ un elemento de curva tal que $\sigma(s_0)=0$ y $\sigma'(s_0)=e_1$, entonces $V(\sigma,s_0)=W(0,\tau(\sigma,s_0)) = W(0,e_1)$. Supongamos que $n\geq 3$, y $M\in\mathrm{SO}(n)$ es alguna rotación que deja fijo a $e_1$. Entonces, tenemos que: $$W(0,e_1)=W(0,Me_1)=V(M\circ\sigma,s_0)=MV(\sigma,s_0)=MW(0,e_1)$$ Esto quiere decir que $W(0,e_1)$ queda fijo por cualquier rotación que deja fijo a $e_1$. Eso implica que $W(0,e_1)=\lambda e_1$, pues en el complemento ortogonal de $e_1$ podemos definir la transformación como querramos (siempre y cuando $Me_i\in\langle e_1\rangle^{\perp}$). Por lo tanto, si $n\geq 3$ tendremos que $V(\sigma,s_0)=A^{-1}W(0,e_1)=\lambda A^{-1}e_1 = \lambda \tau(\sigma,s_0)$. \textcolor{red}{Dibujar la transformación que fija el eje}.
+
+Para $n=2$, sabemos que $A^{-1}$ queda unívocamente determinada como la matriz cuyas columnas son $\tau(\sigma,s_0)$ y $\eta(\sigma,s_0)$ y si $W(0,e_1)=ae_1 + be_2$, obtenemos que $$V(\sigma,s_0)=A^{-1}W(0,e_1) = a\tau(\sigma,s_0)+b\eta(\sigma,s_0)$$ que es fácil comprobar que es un invariante (pues el par $\{\tau(\sigma,s_0),\eta(\sigma,s_0)\}$ forma siempre una base ortonormal con determinante $1$). Y estamos.
+\end{proof}
+\end{prop}
+
