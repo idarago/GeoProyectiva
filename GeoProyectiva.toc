@@ -3,3 +3,5 @@
 \contentsline {section}{\numberline {1.1}Movimientos R\IeC {\'\i }gidos}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Curvas en Espacios Eucl\IeC {\'\i }deos}{3}{section.1.2}
 \contentsline {section}{\numberline {1.3}Invariantes}{6}{section.1.3}
+\contentsline {section}{\numberline {1.4}Curvas Planas}{14}{section.1.4}
+\contentsline {section}{\numberline {1.5}Curvas en el Espacio}{17}{section.1.5}
