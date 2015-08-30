@@ -108,7 +108,7 @@ Por lo general es falso que la fibra sea finita si no nos restringimos a un comp
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=0.25\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/revestimientos1.jpg}
-	\caption{Una parametrización de $S^1$ cuya fibra no es finita}
+	\caption{Una parametrización de $\mathrm{S}^1$ cuya fibra no es finita.}
 	\label{fig:revestimientos1}
 \end{figure}
 \end{ex}
@@ -224,7 +224,7 @@ Supongamos que $n\geq 3$, y $M\in\mathrm{SO}(n)$ es alguna rotación que deja fi
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=0.3\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/rotacionfijae1.jpg}
-	\caption{Una rotación en $\RR^3$ que deja fijo al eje $e_1$}
+	\caption{Una rotación en $\RR^3$ que deja fijo al eje $e_1$.}
 	\label{fig:rotacionfijae1}
 \end{figure}
 
@@ -322,7 +322,7 @@ Ahora nos interesará estudiar curvas en el espacio $\sigma:I\to\RR^3$. Supongam
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=0.4\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/frenetserret.jpg}
-	\caption{El marco de Frenet-Serret}
+	\caption{El marco de Frenet-Serret.}
 	\label{fig:frenetserret}
 \end{figure}
 
@@ -363,7 +363,21 @@ Finalmente, supongamos que $\mu:I\to\RR^3$ es otra curva parametrizada por longi
 \end{proof}
 \end{teo}
 
-Hemos probado que las curvas en el espacio están totalmente determinadas por su curvatura y torsión. Pero estos dos datos son locales. En un sentido más preciso, esto se debe a que se obtienen simplemente calculando derivadas en el punto y por la Observación ~\ref{obs::germenderivadas} ya sabemos que las derivadas son información local. Veamos dos ejemplos que nos muestran cómo inferir, a partir de información local, resultados globales:
+Notemos que el triedro de Frenet-Serret nos determina, en cada punto de la curva, tres planos: el \textbf{plano osculador} es el plano ortogonal a $\B(s)$, el \textbf{plano normal} es el plano ortogonal a $\T(s)$ y el \textbf{plano rectificante} es el plano ortogonal a $\N(s)$. Tratemos de entender como son las proyecciones de la curva a cada uno de estos planos. Para esto, supongamos sin pérdida de la generalidad que $\sigma:(a,b)\to\RR^3$ está parametrizada por longitud de arco y $0\in (a,b)$, y estudiemos las proyecciones al triedro en $\sigma(0)$. Por el desarrollo en serie de Taylor, $\sigma(t)=\sigma(0)+\sigma'(0)t + \dfrac{\sigma''(0)}{2}t^2 + \dfrac{\sigma'''(0)}{6}t^3+ o(t^3)$ (donde usamos la notación $o$-chica, es decir $f(t)$ es $o(t^3)$ si $\displaystyle\lim_{t\to\infty}f(t)/t^3=0$). Por las ecuaciones de Frenet-Serret, sabemos que $\sigma'(0)=\T(0)$, $\sigma''(0)=\T'(0)=\kappa(0)\N(0)$ y finalmente $\sigma'''(0)=-\kappa^2(0)\T(0)+\kappa'(0)\N(0) + \kappa(0)\tau(0)\B(0)$. Como a menos de un movimiento rígido la curva es la misma, podemos suponer sin pérdida de la generalidad que $\sigma(0)=0$. Si escribimos todo en términos de la base $\{\T(0),\N(0),\B(0)\}$, obtenemos una aproximación de orden $3$ en un entorno del origen: $$\sigma(t)\approx\begin{pmatrix}1\\ 0\\ 0\end{pmatrix}t + \begin{pmatrix}0\\ \kappa(0)\\ 0\end{pmatrix}\dfrac{t^2}{2} + \begin{pmatrix}-\kappa(0)^2\\ \kappa'(0) \\ \kappa(0)\tau(0)\end{pmatrix}\dfrac{t^3}{6}$$
+La proyección en el plano osculador, mirando los términos de orden $2$ sólamente, es una parábola parametrizada por $x(t)=t$, $z(t)=\dfrac{\kappa(0)}{2}t^2$. La proyección en el plano rectificante, mirando los términos de orden $3$ sólamente, es aproximadamente una cúbica parametrizada por $x(t)=t-\kappa(0)^2 t^3\approx t$, $y(t)=\dfrac{\kappa(0)\tau(0)}{6}t^3$. Finalmente, la proyección en el plano normal, mirando los términos de orden $3$ sólamente, es aproximadamente $y(t)\approx\dfrac{\kappa(0)}{2}t^2$, $z(t)=\dfrac{\kappa(0)\tau(0)}{6}t^3$.
+
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=1\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/proyeccionesfrenet.jpg}
+	\caption{Las proyecciones a los planos que determina el Triedro de Frenet-Serret.}
+	\label{fig:proyeccionesfrenet}
+\end{figure}
+
+
+\section{Resultados Globales}
+
+Hemos probado que las curvas en el espacio están totalmente determinadas por su curvatura y torsión. Pero estos dos datos son locales. En un sentido más preciso, esto se debe a que se obtienen simplemente calculando derivadas en el punto y por la Observación ~\ref{obs::germenderivadas} ya sabemos que las derivadas son información local. En esta sección vamos a ver cómo obtener resultados globales a partir de información local. Veamos primero dos ejemplos sencillos.
 
 \begin{prop}
 Sea $\sigma:I\to\RR^3$ una curva tal que todas las rectas normales pasan por un punto $P\in\RR^3$ fijo. Entonces la imagen de $\sigma$ está contenida en una esfera.
@@ -383,5 +397,158 @@ $(\Longrightarrow)$ Tenemos un movimiento rígido que lleva el plano que contien
 \end{proof}
 \end{prop}
 
-Para finalizar con la teoría de curvas en el plano, notemos que el triedro de Frenet-Serret nos determina, en cada punto de la curva, tres planos: el \textbf{plano osculador} es el plano ortogonal a $\B(s)$, el \textbf{plano normal} es el plano ortogonal a $\T(s)$ y el \textbf{plano rectificante} es el plano ortogonal a $\N(s)$. Tratemos de entender como son las proyecciones de la curva a cada uno de estos planos. Para esto, supongamos sin pérdida de la generalidad que $\sigma:(a,b)\to\RR^3$ está parametrizada por longitud de arco y $0\in (a,b)$, y estudiemos las proyecciones al triedro en $\sigma(0)$. Por el desarrollo en serie de Taylor, $\sigma(t)=\sigma(0)+\sigma'(0)t + \dfrac{\sigma''(0)}{2}t^2 + \dfrac{\sigma'''(0)}{6}t^3+ o(t^3)$ (donde usamos la notación $o$-chica, es decir $f(t)$ es $o(t^3)$ si $\displaystyle\lim_{t\to\infty}f(t)/t^3=0$). Por las ecuaciones de Frenet-Serret, sabemos que $\sigma'(0)=\T(0)$, $\sigma''(0)=\T'(0)=\kappa(0)\N(0)$ y finalmente $\sigma'''(0)=-\kappa^2(0)\T(0)+\kappa'(0)\N(0) + \kappa(0)\tau(0)\B(0)$. Como a menos de un movimiento rígido la curva es la misma, podemos suponer sin pérdida de la generalidad que $\sigma(0)=0$. Si escribimos todo en términos de la base $\{\T(0),\N(0),\B(0)\}$, obtenemos una aproximación de orden $3$ en un entorno del origen: $$\sigma(t)\approx\begin{pmatrix}1\\ 0\\ 0\end{pmatrix}t + \begin{pmatrix}0\\ \kappa(0)\\ 0\end{pmatrix}\dfrac{t^2}{2} + \begin{pmatrix}-\kappa(0)^2\\ \kappa'(0) \\ \kappa(0)\tau(0)\end{pmatrix}\dfrac{t^3}{6}$$
-La proyección en el plano osculador, mirando los términos de orden $2$ sólamente, es una parábola parametrizada por $x(t)=t$, $z(t)=\dfrac{\kappa(0)}{2}t^2$. La proyección en el plano rectificante, mirando los términos de orden $3$ sólamente, es aproximadamente una cúbica parametrizada por $x(t)=t-\kappa(0)^2 t^3\approx t$, $y(t)=\dfrac{\kappa(0)\tau(0)}{6}t^3$. Finalmente, la proyección en el plano normal, mirando los términos de orden $3$ sólamente, es aproximadamente $y(t)\approx\dfrac{\kappa(0)}{2}t^2$, $z(t)=\dfrac{\kappa(0)\tau(0)}{6}t^3$. \textcolor{red}{Agregar dibujos de las proyecciones aproximadas en los planos}
+\begin{defn}
+Una curva $\sigma:\RR\to\RR^n$ regular se dice \textbf{cerrada} si existe $\rho>0$ tal que $\sigma(t+\rho)=\sigma(t)$ para todo $t\in\RR$. Al menor $\rho>0$ que cumple eso se lo denomina el \textbf{período}.
+\end{defn}
+
+\begin{obs}
+Notar que el período existe. En efecto, si consideramos el conjunto: $$\mathscr{P}=\{\rho>0:\sigma(t+\rho)+\sigma(t)\;\forall t\in\RR\}$$ tomamos $\rho_0=\inf\mathscr{P}$, y $(\rho_n)_{n\in\NN}\subseteq\mathscr{P}$ una sucesión que tiende a $\rho_0$. Si tuviéramos que $\displaystyle\lim_{n\to\infty}\rho_n=0$, entonces $\sigma'(0)=\lim_{n\to\infty}\dfrac{\sigma(\rho_n)-\sigma(0)}{\rho_n} = 0$, que contradice la regularidad de $\sigma$. Por lo tanto $\rho_0>0$. Además, por la continuidad de $\sigma$, $\displaystyle\lim_{n\to\infty}\sigma(t+\rho_n)=\sigma(t+\rho_0)$, y así obtenemos $\sigma(t+\rho_0)=\sigma(t)$ para todo $t\in\RR$. Es decir, $\rho_0\in\mathscr{P}$ y así es un mínimo. Otra manera de verlo es notar que el conjunto $$\mathscr{S}=\{\rho\in\RR:\sigma(t+\rho)=\sigma(t)\;\forall t\in\RR\}$$ es un subgrupo del grupo aditivo $(\RR,+)$ y eso implica que es cíclico con un generador (sin pérdida de la generalidad positivo) que será el período, o que es denso, pero esto implicaría que $\sigma$ es constante.
+\end{obs}
+
+Notemos que la noción de longitud de una curva que tenemos, en el caso de una curva cerrada no refleja la situación geométrica. En efecto, la integral $\int_\RR \norm{\sigma'(\xi)}\diff\xi$ no será convergente nunca. Pero en realidad la información que nos importa está contenida en un período, y esto es lo que dice la siguiente definición:
+
+\begin{defn}
+Si $\sigma:\RR\to\RR^n$ es una curva cerrada, entonces se define la \textbf{longitud} de $\sigma$ como: $$\mathrm{Long}(\sigma)=\mathrm{Long}(\left.\sigma\right|_{[t,t+\rho]}) = \mathrm{Long}(\left.\sigma\right|_{[0,\rho]})$$
+Una curva cerrada $\sigma$ de período $\rho$ se dice \textbf{simple} si $\sigma(t)=\sigma(s)$ implica $t-s\in\rho\ZZ$.
+\end{defn}
+
+Ya sabemos que la curvatura representa en alguna medida el cambio del ángulo de la curva en un sentido intuitivo, pero hasta ahora no formalizamos esta noción. Hagamos esto con la siguiente proposición:
+
+\begin{prop}
+\label{prop::anguloglobal}
+Sea $\sigma:(a,b)\to\RR^2$ una curva regular plana y $k:(a,b)\to\RR$ su curvatura plana. Entonces existe una función $\theta:(a,b)\to\RR$ diferenciable tal que $$\T(s)=(\cos(\theta(s)),\sen(\theta(s)))$$ para todo $s\in(a,b)$. Se dice que $\theta$ es un \textbf{ángulo global}. Por otra parte, si $\varphi:(a,b)\to\RR$ es otro ángulo global, existe algún $\ell\in\ZZ$ tal que $\theta-\varphi\equiv 2\pi\ell$.
+\begin{proof}
+Supongamos primero que $\sigma$ está parametrizada por longitud de arco y sea $s_0\in(a,b)$. Como $\norm{\T(s_0)}=1$, existe $\theta_0\in\RR$ tal que $\T(s_0)=(\cos(\theta_0),\sen(\theta_0))$. Definamos una función $\theta:(a,b)\to\RR$ vía $\theta(t)=\theta_0 + \displaystyle\int_{t_0}^t k(\xi)\diff\xi$, y consideremos entonces $v:(a,b)\to\RR^2$ dada por $v(t)=(\cos(\theta(t)),\sen(\theta(t)))$. Si $R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}\in\mathscr{M}_2(\RR)$, entonces es fácil verificar que $v'(t) = k(t)Rv(t)$. Pero por otra parte, $\T'(t)=k(t)R\T(t)$, y como $\T(t_0)=v(t_0)$, debemos tener que $\T\equiv v$ por la unicidad de la solución de este Problema de Valores Iniciales.
+
+Ahora bien, si $\sigma$ no está parametrizada por longitud de arco, sea $u:(c,d)\to(a,b)$ la reparametrización tal que $\sigma\circ u$ sí esté parametrizada por longitud de arco. Entonces, existe un ángulo global $\theta:(c,d)\to\RR$ tal que $(\sigma\circ u)'(s)=(\cos(\theta(s)),\sin(\theta(s)))$. Por lo tanto, $\T(t)=\dfrac{\sigma'(t)}{\norm{\sigma'(t)}}=\sigma'(t)u'(u^{-1}(t)) = (\cos(\theta(u^{-1}(t))),\sen(\theta(u^{-1}(t))))$.
+
+Por otra parte, si $\varphi$ es otro ángulo global, entonces tendremos que: $$(\cos(\theta(t)),\sen(\theta(t)))=\T(t)=(\cos(\varphi(t)),\sen(\varphi(t)))$$ y así $\theta(t)-\varphi(t)\in 2\pi\ZZ$. Como $\theta-\varphi$ es continua y $2\pi\ZZ$ es discreto, debe ser constante. Como queríamos probar.
+\end{proof}
+\begin{proof}[Una demostración topológica]
+Sabemos que $p:\RR\to\mathrm{S}^1$, $p(t)=(\cos(t),\sen(t))$ es el revestimiento universal de $\mathrm{S}^1$. Sea $s_0\in(a,b)$ y $\theta_0\in\RR$ tal que $p(\theta_0)=\T(s_0)$. Como $(a,b)$ es simplemente conexo y $\T:(a,b)\to\mathrm{S}^1$ continua, por la propiedad del levantamiento, existe una única función continua $\theta:(a,b)\to\RR$ tal que $p\circ\theta=\T$ y $\theta(s_0)=\theta_0$. Es decir, el siguiente diagrama (de espacios topológicos punteados) conmuta:
+\begin{center}
+\begin{tikzcd}
+& (\RR,\theta_0)\arrow[]{d}[font=\normalsize, right]{p} \\
+((a,b),s_0)\arrow[dashed]{ur}[font=\normalsize]{\exists !\theta} \arrow[]{r}[font=\normalsize]{\T} & (\mathrm{S}^1,\T(s_0))
+\end{tikzcd}
+\end{center}
+Ahora bien, como $p'(t)\neq 0$ para todo $t\in\RR$ y $p\in\mathscr{C}^\infty(\RR)$, por el Teorema de la Función Inversa existe en un entorno de cada punto una inversa infinitamente diferenciable $p^{-1}$ y así $\theta=p^{-1}\circ\T$ localmente. Por lo tanto, $\theta$ es tan diferenciable como $\T$, y listo.
+\end{proof}
+\end{prop}
+
+\begin{defn}
+Sea $\sigma:\RR\to\RR^2$ una curva cerrada de período $\rho$, y sea $\theta:(a,b)\to\RR$ un ángulo global para $\sigma$. Se define el \textbf{índice de rotación} de $\sigma$ como: $$\mathrm{Ind}(\sigma)=\dfrac{1}{2\pi}(\theta(\rho)-\theta(0))$$
+\end{defn}
+
+\begin{obs}
+Notar que $\mathrm{Ind}(\sigma)$ no depende de la elección del ángulo global $\theta$ (pues si $\varphi$ es otro ángulo global, $\varphi(t)=\theta(t)+2\pi\ell$ y así $\varphi(\rho)-\varphi(0)=\theta(\rho)-\theta(0)$). Por otra parte, como $\sigma(\rho)=\sigma(0)$ por la periodicidad, obtenemos que $\theta(\rho)-\theta(0)\in 2\pi\ZZ$ y así $\mathrm{Ind}(\sigma)\in\ZZ$.
+\end{obs}
+
+\begin{teo}[Hopf]
+\label{teo::hopfumlaufsatz}
+El índice de rotación de una curva cerrada y simple es siempre $\pm 1$ (dependiendo de la dirección en la que se la parametriza).
+\begin{proof}
+Sea $\sigma:\RR\to\RR^2$ la curva parametrizada por longitud de arco con período $\rho$. Consideremos la región $\triangle = \{(s,t)\in\RR^2 : 0\leq s<t\leq \rho\}$, como en la Figura ~\ref{fig:hopfumlaufsatz1}
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.3\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/hopfumlaufsatz1.jpg}
+	\caption{La región $\triangle$.}
+	\label{fig:hopfumlaufsatz1}
+\end{figure}
+
+Consideremos ahora la función $\varphi:\triangle\to\mathrm{S}^1\subseteq\RR^2$ dada por: $$\varphi(s,t)=\begin{cases}\dfrac{\sigma(t)-\sigma(s)}{\norm{\sigma(t)-\sigma(s)}} &\text{ si }0\leq s< t\leq \rho \text{ y } (s,t)\neq(0,\rho) \\ \T(s)=\sigma'(s) &\text{ si }0\leq s=t\leq\rho \\ -\T(0)=-\sigma'(0)&\text{ si }(s,t)=(0,\rho)\end{cases}$$
+
+Es claro que esta función, asumiendo suficiente regularidad de $\sigma$, es al menos de clase $\mathscr{C}^2$ en $\triangle$ (es decir, hay un abierto que contiene a $\triangle$ y una función que extiende a $\varphi$ que es de clase $\mathscr{C}^2$). Como en la demostración topológica de ~\ref{prop::anguloglobal}, podemos conseguir una función $\theta:\triangle\to\RR$ diferenciable tal que $\varphi(s,t)=(\cos(\theta(s,t)),\sen(\theta(s,t)))$. Notemos que $\varphi(s,s)=\T(s)$ y así $\theta(s,s)$ es un ángulo global para $\sigma$. 
+
+Como el índice de rotación claramente es invariante bajo movimientos rígidos y reparametrizaciones directas, podemos asumir que toda la imagen de $\sigma$ está contenida en el semiplano superior, de modo tal que $\sigma(0)=0$ y la tangente a $\sigma$ allí es paralela al eje $x$. Es decir, trasladamos la curva hasta que toque en su punto más bajo al eje $x$. Si su tangente tuviera alguna componente en la dirección del eje $y$, desarrollando en serie de Taylor en un entorno de ese punto, o bien vendría un punto desde abajo (si la componente fuera positiva) o bien iría hacia abajo (si la componente fuera negativa). Ambas alternativas serían contradictorias a que el punto sea el más bajo. Esto se puede observar en la Figura ~\ref{fig:hopfumlaufsatz2}
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.55\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/hopfumlaufsatz2.jpg}
+	\caption{Posicionando correctamente a la curva.}
+	\label{fig:hopfumlaufsatz2}
+\end{figure}
+
+Supongamos que $\sigma$ se atraviesa de modo tal que $\T(0)=(1,0)$. Podemos parametrizar a los lados del triángulo $\triangle$ según $\gamma_1:[0,\rho]\to\RR^2,\;\gamma_1(t)=(0,t)$, $\gamma_2:[0,\rho]\to\RR^2$, $\gamma_2(t)=(t,\rho)$ y $\gamma:[0,\rho]\to\RR^2,\; \gamma(t)=(t,t)$. Como $\theta(s,s)$ es un ángulo global, se tiene claramente que: $$\mathrm{Ind}(\sigma)=\dfrac{1}{2\pi}(\theta(\rho,\rho)-\theta(0,0)) = \dfrac{1}{2\pi}\displaystyle\int_{0}^\rho \dfrac{\diff}{\diff u}(\theta(u,u))\diff u = \dfrac{1}{2\pi}\int_0^\rho \theta_s(u,u)+\theta_t(u,u)\diff u $$ Pero esta última integral simplemente es la integral de línea del campo $(\theta_s,\theta_t)$ sobre $\gamma$. Al ser $\theta$ de clase al menos $\mathscr{C}^2$, las derivadas cruzadas conmutan y esto implica que el campo es conservativo. Por lo tanto, la integral de línea depende solamente de los extremos y no del camino. Es decir, se tiene: $$\dfrac{1}{2\pi}\int_{\gamma} (\theta_s,\theta_t)\cdot \diff s = \dfrac{1}{2\pi}\int_{\gamma_1}(\theta_s,\theta_t)\cdot \diff s + \dfrac{1}{2\pi}\int_{\gamma_2}(\theta_s,\theta_t)\cdot\diff s$$
+\textcolor{red}{COMPLETAR EL ARGUMENTO!}
+\end{proof}
+\end{teo}
+
+\begin{cor}
+Sea $\sigma:\RR\to\RR^2$ una curva cerrada simple. Entonces la función $\T:\RR\to\mathrm{S}^1$ es sobreyectiva.
+\begin{proof}
+Sea $\theta$ un ángulo global y $\rho$ el período de $\sigma$. Sin pérdida de la generalidad, por el Teorema anterior ~\ref{teo::hopfumlaufsatz}, tenemos $\theta(\rho)-\theta(0)=2\pi$. Por conexión, tenemos que $\theta$ debe tomar todos los valores en $[\theta(0),\theta(0)+2\pi]$. Esto implica que $\T$ es sobreyectiva, pues $\T(s)=(\cos(\theta(s)),\sen(\theta(s)))$ y $\theta$ recorre todo un período.
+\end{proof}
+\end{cor}
+
+\begin{defn}
+Una curva se dice \textbf{convexa} si está contenida a un lado de cada una de las rectas tangentes.
+\end{defn}
+
+\begin{teo}
+Una curva cerrada simple es convexa si y sólo si su curvatura no cambia de signo.
+\begin{proof}
+\hfill
+
+($\Longleftarrow$) Sea $\sigma:\RR\to\RR^2$ una parametrización por longitud de arco con período $\rho$, y sea $\theta:\RR\to\RR$ un ángulo global para $\sigma$. Entonces, sabemos que $\theta'=k$, y como la curvatura no cambia de signo, debemos tener que $\theta$ es monótona. Supongamos sin pérdida de la generalidad que $k\geq 0$ y así $\theta$ monótona creciente. Supongamos que $\sigma$ no es convexa. Es decir, existe un punto $p=\sigma(t_0)$ y puntos $q_1=\sigma(t_1),q_2=\sigma(t_2)$ en cada uno de los semiplanos que determina la tangente $L$ a $\sigma$ por $p$. Tomamos a $q_1$ y $q_2$ como los puntos más alejados de $L$. Claramente las rectas tangentes a $\sigma$ por $q_1$ y $q_2$ deben ser paralelas a $L$ pues si $\T(t_1),\T(t_2)$ tuvieran alguna componente en la dirección ortogonal a $L$, mirando el desarrollo de Taylor en un entorno de $s_1, s_2$ tendríamos puntos más alejados de $L$ (alternativamente, esto se puede probar por Multiplicadores de Lagrange).
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.30\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/curvaturacurvaconvexa.jpg}
+	\caption{Los puntos más alejados a ambos lados de la tangente.}
+	\label{fig:curvaturacurvaconvexa}
+\end{figure}
+
+Como tenemos tres vectores unitarios con la misma dirección, debe haber al menos dos que tengan el mismo sentido (y así deben ser idénticos). Es decir, tenemos $0\leq s_1<s_2\leq \rho$ tales que $\T(s_1)=\T(s_2)$ con $(s_1,s_2)\neq (0,\rho)$. Por lo tanto, $\theta(s_2)-\theta(s_1)\in 2\pi\ZZ$. Ahora bien, como $\theta$ es monótona, el incremento $\theta(s_2)-\theta(s_1)$ debe ser menor que $\theta(\rho)-\theta(0)$. Pero por el Teorema de Hopf ~\ref{teo::hopfumlaufsatz} debemos tener que $\theta(\rho)-\theta(0)=2\pi$. Entonces, $\theta(s_1)=\theta(s_2)$ ó $\theta(s_2)=\theta(s_1)+2\pi$. En el primer caso, $\theta$ debe ser constante en $[s_1,s_2]$ y así $\sigma$ debe ser una recta en $[s_1,s_2]$. Esto contradice el hecho de que ninguno de los puntos $p,q_1,q_2$ yacen sobre una misma recta. En el segundo caso, como $\theta(s_2)-\theta(s_1)=\theta(\rho)-\theta(0)$, debemos tener que $\theta$ es constante en $[0,s_1]$ y $[s_2,\rho]$. De esta forma, $\sigma$ es un segmento de recta entre $\sigma(s_1)$ y $\sigma(s_2)$, y esto es absurdo como en el caso anterior.
+
+$(\Longrightarrow)$ Supongamos ahora que $\sigma$ es convexa. Si $\theta$ no es monótona, entonces existen $t_1<t_0<t_2$ tales que $\theta(t_1)=\theta(t_2)$ pero $\theta(t_1)\neq\theta(t_0)$. \textcolor{red}{Agregar una justificación decente para esto}. En particular tenemos que $\T(t_1)=\T(t_2)$.
+
+Como $\T$ es sobreyectiva, existe $t_3$ tal que $\T(t_3)=-\T(t_1)$. Si miro las rectas tangentes a $\sigma$ en tiempos $t_1,t_2,t_3$, tengo tres rectas paralelas con puntos de la curva. Si tomo la que está en el medio, tiene puntos a ambos lados y eso niega la convexidad de la curva. Por lo tanto, al menos dos de esas rectas tangentes deben coincidir. Supongamos que $\sigma(s_1)$ y $\sigma(s_2)$ tienen la misma recta tangente $L$. Sea $L'$ una recta perpendicular a $L$ que corta a $L$ entre $\sigma(s_1)$ y $\sigma(s_2)$. Entonces, $L'$ debe cortar a la curva en dos puntos $p,q$, pues hay dos arcos de la curva entre $\sigma(s_1)$ y $\sigma(s_2)$. Supongamos que $p$ es el punto más cercano a $L$ y $q$ el más lejano de los dos. Si $p$ no está sobre $L$, entonces tenemos un triángulo con vértices $\sigma(s_1),\sigma(s_2)$ y $q$ con un punto $p$ en su interior. Ahora, cualquier recta que pase por $p$ no puede tener a $\sigma(s_1),\sigma(s_2)$ y $q$ en un mismo semiplano. En efecto, esto se debe a que los semiplanos son convexos y si tuviera a los tres vértices debería tener a todo el triángulo. En particular, $p$ estaría en el interior del semiplano y no en el borde. En particular, la tangente por $p$ nos dejaría puntos a ambos lados, lo que contradice la convexidad de $\sigma$. Esto implica que la curva tiene un segmento de recta entre $\sigma(s_1)$ y $\sigma(s_2)$.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.30\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/tangentecurvaconvexa.jpg}
+	\caption{Dos puntos en la curva con la misma recta tangente.}
+	\label{fig:tangentecurvaconvexa}
+\end{figure}
+
+Esto es absurdo, pues la tangente en $s_1$ y $s_2$ tienen la misma dirección pero signo opuesto, y en todo ese segmento la tangente preserva la dirección, pero por continuidad no puede cambiar su signo. Este absurdo viene de suponer que $\theta$ no es monótona. Esto concluye la demostración.
+\end{proof}
+\end{teo}
+
+\begin{cor}
+Si $\sigma:\RR\to\RR^2$ es una curva cerrada, simple y convexa y $\theta(s_1)=\theta(s_2)$ ($s_1<s_2$) para algún ángulo global $\theta$, entonces $\theta$ es constante en $[s_1,s_2]$.
+\begin{proof}
+Se desprende de la demostración anterior.
+\end{proof}
+\end{cor}
+
+\begin{cor}\label{cor::intconvrecta}
+Sea $\sigma:\RR\to\RR^2$ una curva cerrada convexa. Si una recta interseca a $\sigma$ tres veces, entonces la interseca en todo el segmento entre esos dos puntos.
+\begin{proof}
+Supongamos que la recta $L$ corta a $\sigma$ en puntos $A,B,C$ con $B$ entre $A$ y $C$ en $L$. Notemos que $L$ debe ser tangente a $\sigma$ en $B$ pues si no $A$ y $C$ estarían en dos semiplanos distintos respecto de la tangente, lo que contradiría la convexidad de la curva. Pero entonces $L$ también debe ser tangente a la curva en $A$ y $C$, pues si la tangente a $\sigma$ en esos puntos tuviera alguna componente en la dirección ortogonal a $L$, habría puntos de la curva a ambos lados de $L$ (razonando como ya lo hicimos antes, por Taylor). Pero por el Corolario anterior, la curva debe ser una recta entre $A$ y $B$ y entre $B$ y $C$. Esto concluye la demostración.
+\end{proof}
+\end{cor}
+
+\begin{defn}
+Un \textbf{vértice} de una curva regular $\sigma:I\to\RR^2$ es un punto $s_0$ tal que $k'(s_0)=0$, donde $k$ es la curvatura plana de $\sigma$.
+\end{defn}
+
+\begin{teo}[de los Cuatro Vértices]
+Sea $\sigma:\RR\to\RR^2$ una curva simple, cerrada y estrictamente convexa. Entonces $\sigma$ tiene al menos cuatro vértices.
+\begin{proof}
+Si $k$ fuera constante en algún intervalo, todos esos puntos serían vértices y el Teorema se seguiría trivialmente. Si $\rho$ es el período de $\sigma$, como $k:[0,\rho]\to\RR$ es una función continua sobre un compacto, alcanza un máximo y un mínimo en puntos $s_1,s_2$ respectivamente. Sean $p=\sigma(s_1)$ y $q=\sigma(s_2)$, y sea $L$ la recta que pasa por $p$ y $q$. Estos puntos $p$ y $q$ son claramente vértices por cómo los elegimos. Además, en virtud del Corolario ~\ref{cor::intconvrecta}, $L$ sólo puede cortar a la curva en $p$ y $q$. Sean $a,c\in\RR^2$ tales que la recta $L$ tiene ecuación $L=\{x\in\RR^2 : \pint{x-a,c}=0\}$. Entonces, la asignación $t\mapsto\pint{\sigma(t)-a,c}$ tiene exactamente dos ceros, que son $s_1$ y $s_2$. Veamos que en cada uno de dos los arcos de la curva que determinan $p$ y $q$ hay algún vértice. Esto nos dará los cuatro vértices que buscamos.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.40\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/fourvertex.jpg}
+	\caption{El máximo y el mínimo de la curvatura de $\sigma$.}
+	\label{fig:fourvertex}
+\end{figure}
+
+Integrando por partes, resulta que: \begin{align*}\int_{0}^{\rho} k'(t)\pint{\sigma(t)-a,c}\diff t &= -\int_{0}^{\rho}k(t)\pint{\T(t),c}\diff t + \left(k(t)\pint{\sigma(t)-a,c}\right)\Big\rvert_{0}^{\rho}\\ &= \int_{0}^{\rho} \pint{-k(t)\T(t),c}\diff t\\ &= \int_{0}^{\rho}\pint{\N'(t),c}\diff t\\ &=\int_{0}^{\rho}\pint{\N(t),c}'\diff t = \pint{\N(t),c}\Big\rvert_{0}^{\rho} = 0 \end{align*}
+
+Ahora bien, en cada uno de los arcos de la curva que determinan $p$ y $q$, la derivada de la curvatura no se anula. Como $p$ es un mínimo y $q$ un máximo, en un arco la derivada de la curvatura debe ser positiva y en el otro negativa. Como la curva es convexa y estamos asumiendo que no hay un segmento contenida, hay un arco contenido en cada semiplano que determina $L$. En el semiplano que está por debajo de $L$ tendremos que $\pint{\sigma(t)-a,c}<0$ y en el que está por arriba tendremos que $\pint{\sigma(t)-a,c}>0$. Por lo tanto, $k'(t)\pint{\sigma(t)-a,c}$ siempre tiene el mismo signo en toda la curva. Pero probamos que $\displaystyle\int_{0}^{\rho}k'(t)\pint{\sigma(t)-a,c}\diff t=0$, y eso implica que $k'(t)\pint{\sigma(t)-a,c}\equiv 0$. Pero esto es absurdo, pues $\pint{\sigma(t)-a,c}$ se anula únicamente en $s_1$ y $s_2$, y estamos suponiendo que $k'$ se anula sólo en $s_1$ y $s_2$. Y estamos.
+\end{proof}
+\end{teo}
