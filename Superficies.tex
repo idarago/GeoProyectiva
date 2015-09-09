@@ -1,0 +1,263 @@
+\chapter{Geometría Diferencial de las Superficies}
+
+\section{Aspectos locales}
+
+\begin{defn}
+Una \textbf{carta} es una función $\x:U\subseteq\RR^2\to\RR^3$ definida en un abierto $U\subseteq \RR^2$ que es inyectiva, diferenciable y tal que para todo $u\in U$ tenemos que $\partial_1 \x(u)\wedge \partial_2 \x(u) \neq 0$, donde $\partial_1 \x,\partial_2 \x$ son las derivadas parciales de $\x$ respecto de la primera y segunda coordenada respectivamente. Esto es equivalente a que los vectores $\{\partial_1 \x(u),\partial_2 \x(u)\}$ sean linealmente independientes. La imagen de $\x$ se denomina la \textbf{traza} de la carta.
+\end{defn}
+
+\begin{defn}
+Sea $\x:U\subseteq\RR^2\to\RR^3$ una carta. Las funciones $\x_1=\partial_1 \x:U\to\RR^3$ y $\x_2=\partial_2:U\to\RR^3$ se denominan \textbf{campos coordenados} y la función $\n:U\to\RR^3$ dada por $\n(u)=\dfrac{\x_1(u)\wedge \x_2(u)}{\norm{\x_1(u)\wedge \x_2(u)}}$ es el denominado \textbf{campo normal unitario}.
+\end{defn}
+
+\begin{defn}
+Un \textbf{cambio de coordenadas} es una función $\varphi:V\to U$ entre abiertos del plano $U,V\subseteq\RR^2$ que es biyectiva, diferenciable y con inversa diferenciable.
+\end{defn}
+
+Supongamos que $\varphi:V\to U$ es un cambio de coordenadas. La función $\varphi$ está determinada por sus componentes $\varphi^1,\varphi^2:V\to\RR$. Es decir, $\varphi(v)=(\varphi^1(v),\varphi^2(v))$ para cada $v\in V$. Recordemos que se define la \textbf{diferencial} de una función $\varphi$ como la asignación $\D_\varphi:V\to\mathscr{M}_2(\RR)$ dada por: $$\D_\varphi(v)=\begin{pmatrix}\partial_1 \varphi^1(v) & \partial_2 \varphi^1(v)\\ \partial_1 \varphi^2(v) & \partial_2 \varphi^2(v)\end{pmatrix}$$
+Recordemos también que el determinante de la matrix $\J_\varphi(v)=\det\D_\varphi(v)$ se denomina el \textbf{jacobiano} de $\varphi$. Si $\psi:U\to V$ es la inversa diferenciable de $\varphi:V\to U$, entonces $\psi\circ\varphi(v)=v$ para cada $v\in V$ y por la regla de la cadena tenemos que $\D_\psi(\varphi(v)) \D_\varphi(v)=I$ donde $I\in\mathscr{M}_2(\RR)$ es la matriz identidad. Más concretamente, se tiene que $\displaystyle\sum_{k=1}^2 \dfrac{\partial \psi^i}{\partial u^k}(\varphi(v)) \dfrac{\partial\varphi^k}{\partial v^j}(v) = \delta_{j}^{i}$ para cada $i,j\in\{1,2\}$ (donde $\delta_i^j$ es la delta de Kronecker).
+En particular, tenemos que $\D_\varphi(v)\in\GL_2(\RR)$ y así $\J_\varphi(v)$ nunca se anula. Por lo tanto, la asignación $\J_\varphi:V\to\RR$ es continua (pues tomar determinante es una función en términos de las coordenadas de la matriz y así es claramente continuo y $\D_\varphi$ es continua asumiendo regularidad al menos $\mathscr{C}^1$ de $\varphi$). Si $V$ es conexo y como $\J_\varphi$ nunca se anula, debe ser que $\J_\varphi$ tiene signo constante. En el caso que $\J_\varphi>0$ se dice que $\varphi$ \textbf{preserva la orientación}, mientras que si $\J_\varphi<0$ decimos que $\varphi$ \textbf{invierte la orientación}.
+
+\begin{prop}\label{prop::cartacambiodecoordenadas}
+Si $\x:U\to\RR^3$ es una carta y $\varphi:V\to U$ es un cambio de coordenadas, entonces $\y=\x\circ\varphi:V\to\RR^3$ también es una carta y tiene la misma traza que $\x$. Más aún, tenemos que $\y_i = \displaystyle\sum_{j=1}^2 \partial_i \varphi^j \x_j$, y el campo normal a $\y$ es $\n$ o $-\n$ dependiendo de si $\varphi$ preserva o revierte la orientación respectivamente.
+\begin{proof}
+Claramente $\y$ es diferenciable por ser composición de funciones diferenciables, e inyeciva por la razón análoga. Ahora, por la regla de la cadena tenemos que: $$\y_i(v)=\partial_i\y(v)=\partial_i (\x\circ\varphi)(v)=\displaystyle\sum_{j=1}^2 \dfrac{\partial\x}{\partial u^j}(\varphi(v))\dfrac{\partial\varphi^j}{\partial v^i}(v) = \displaystyle\sum_{j=1}^2 \partial_i\varphi^j(v)\x_j(\varphi(v))$$ Entonces, para ver que es una carta, sólamente falta ver que $\y_1\wedge\y_2\neq 0$. Calculemos este producto vectorial:
+\begin{align*}
+\y_1\wedge\y_2 &= \left(\displaystyle\sum_{j=1}^2 \partial_1 \varphi^j\x_j\right)\wedge\left(\displaystyle\sum_{k=1}^2 \partial_2 \varphi^k\x_k\right) \\ &= \left(\partial_1\varphi^1\x_1\wedge\partial_2\varphi^2\x_2\right) + \left(\partial_1\varphi^2\x_2\wedge\partial_2\varphi^1\x_1\right)\\
+&=\left(\partial_1\varphi^1\partial_2\varphi^2 - \partial_1\varphi^2\partial_2\varphi^1\right) \x_1\wedge \x_2\\
+&= \J_\varphi \x_1\wedge\x_2
+\end{align*}
+Esto es no nulo por ser $\J_\varphi(v)\neq 0$ para todo $v\in V$ y $\x_1(v)\wedge\x_2(v)\neq 0$ por ser $\x$ una carta. Finalmente, el campo normal de $\y$ es simplemente $\dfrac{\y_1\wedge\y_2}{\norm{\y_1\wedge\y_2}} = \dfrac{\J_\varphi}{|\J_\varphi|}\dfrac{\x_1\wedge\x_2}{\norm{\x_1\wedge\x_2}} = \sg(\J_\varphi)\n$. Esto concluye la demostración.
+\end{proof}
+\end{prop}
+
+\begin{defn}
+Si $\x:U\to\RR^3$ es una carta y $X\in\RR^3$ un vector, decimos que $X$ es \textbf{tangente} a $\x$ en $u\in U$ si existe $\varepsilon>0$ y $\alpha:(-\varepsilon,\varepsilon)\to U$ diferenciable tal que $\alpha(0)=u$ y $X = (\x\circ\alpha)'(0)$.
+\end{defn}
+\textcolor{red}{Agregar dibujo!}
+
+\begin{prop}
+Sea $\x:U\to\RR^3$ una carta y $u\in U$. El conjunto $\mathrm{T}_{u}\x$ de todos los vectores tangentes a $\x$ en $u\in U$ es un subespacio vectorial de $\RR^3$ de dimensión $2$ que tiene al conjunto $\{\x_1(u),\x_2(u)\}$ como base y que es ortogonal a $\n(u)$.
+\begin{proof}
+Notemos primero que $\x_1(u),\x_2(u)\in\mathrm{T}_u\x$. En efecto, considero $\xi_1:\RR\to\RR^2$ dada por $\xi_1(t)=(u^1+t,u^2)$. Como $\xi_1(0)=(u^1,u^2)=u$ y $U$ es abierto, existe un $\varepsilon>0$ tal que $\xi_1$ se restringe a $\xi_1:(-\varepsilon,\varepsilon)\to U$. Es fácil comprobar que $(\x\circ\xi_1)'(0)=\x_1(u)$. De manera análoga, considerando $\xi_2(t)=(u^1,u^2+t)$ y restringiéndola a un entorno adecuado se sigue que $(\x\circ\xi_2)'(0)=\x_2(u)$. Esto implica que $\x_1(u),\x_2(u)\in\mathrm{T}_u\x$.
+
+Sean $X,Y\in\mathrm{T}_u\x$ y $\lambda\in\RR$. Por lo tanto, existen $\alpha,\beta:(-\varepsilon,\varepsilon)\to U\subseteq\RR^2$ funciones tales que $\alpha(0)=\beta(0)=u$ y $X=(\x\circ\alpha)'(0)$, $Y=(\x\circ\beta)'(0)$. Por la regla de la cadena, podemos escribir esto de forma más concisa como $X=(\alpha^1)'(0)\x_1(u) + (\alpha^2)'(0)\x_2(u)$ e $Y=(\beta^1)'(0)\x_1(u)+(\beta^2)'(0)\x_2(u)$. Veamos que $X+\lambda Y\in\mathrm{T}_u\x$. Para ello, consideremos $\gamma:\RR\to\RR^2$ dada por $\gamma(t)=\alpha(t)+\beta(\lambda t)-u$. Como $\gamma(0)=u\in U$ y $U$ es abierto, podemos considerar la restricción $\gamma:(-\varepsilon',\varepsilon')\to U$ para algún $\varepsilon'>0$. Ahora bien, por la regla de la cadena sabemos que: \begin{align*}(\x\circ\gamma)'(0)&=(\gamma^1)'(0)\x_1(u)+(\gamma^2)'(0)\x_2(u)\\ &= \left((\alpha^1)'(0)+\lambda (\beta^1)'(0)\right)\x_1(u) + \left((\alpha^2)'(0)+\lambda (\beta^2)'(0)\right)\x_2(u) = X+\lambda Y\end{align*} 
+Y así $\mathrm{T}_u\x$ forma un espacio vectorial. Por otra parte, a cualquier elemento de $\mathrm{T}_u\x$ lo pudimos expresar como combinación lineal de $\{\x_1(u),\x_2(u)\}$, que son linealmente independientes por la definición de carta. Esto concluye la demostración.
+\end{proof}
+\end{prop}
+
+\begin{defn}
+Si $\x:U\to\RR^3$ es una carta, decimos que el espacio vectorial $\mathrm{T}_u\x$ de dimensión $2$ es el \textbf{plano tangente} a $\x$ en $u$.
+\end{defn}
+
+\begin{prop}
+Sea $\x:U\to\RR^3$ una carta y sea $\varphi:V\to U$ un cambio de coordenadas y sea $\y=\x\circ\varphi: V\to \RR^3$. Si $v\in V$, entonces los espacios $\mathrm{T}_v\y = \mathrm{T}_{\varphi(v)}\x$ coinciden. Más aún, si $X\in\mathrm{T}_v\y$ y escribimos $X = X^1\x_1(\varphi(v)) + X^2\x_2(\varphi(v)) = Y^1\y_1(\varphi(v)) + Y^2\y_2(\varphi(v))$. Entonces, $X^i = \displaystyle\sum_{j=1}^2 \partial_j\varphi^i Y^j$, o dicho de otra forma: $$\begin{pmatrix}X^1 \\ X^2\end{pmatrix} = \D_\varphi(v)\begin{pmatrix}Y^1 \\ Y^2\end{pmatrix}$$
+\begin{proof}
+Sea $X\in\mathrm{T}_v\y$. Luego, existen $\varepsilon>0$ y $\alpha:(-\varepsilon,\varepsilon)\to V$ tales que $\alpha(0)=v$ y $X=(\y\circ\alpha)'(0)$. Pero como $\y=\x\circ\varphi$, se tiene que $(\x\circ (\varphi\circ\alpha))'(0)$ y $\varphi\circ\alpha:(-\varepsilon,\varepsilon)\to U$ es una curva con $\varphi\circ\alpha(0)=\varphi(v)$, tenemos que $X\in\mathrm{T}_{\varphi(v)}\x$. Por lo tanto, $\mathrm{T}_v\y\subseteq\mathrm{T}_{\varphi(v)}\x$. Como son espacios vectoriales de dimensión $2$, deben ser iguales.
+
+Ahora bien, para ver la otra parte de la proposición, utilizamos el cambio de coordenadas que nos da la Proposición ~\ref{prop::cartacambiodecoordenadas}: $$\displaystyle\sum_{i=1}^2 X^i \x_i(\varphi(v)) = \displaystyle\sum_{j=1}^2 Y^j \y_j(v)=\displaystyle\sum_{j=1}^2 Y^j \left(\displaystyle\sum_{i=1}^2 \partial_j\varphi^i \x_i(\varphi(v))\right) = \displaystyle\sum_{i=1}^2 \left(\displaystyle\sum_{j=1}^2 \partial_j\varphi^i Y^j\right)\x_i(\varphi(v))$$
+
+Como queríamos probar.
+\textcolor{red}{Agregar dibujo}
+\end{proof}
+\end{prop}
+
+\begin{prop}\label{prop::tangenteconcartas}
+Sea $\x:U\to\RR^3$ una carta y $u\in U$ y fijemos $X\in\mathrm{T}_u\x$. Entonces:
+\begin{enumerate}
+\item Sea $f\in\mathscr{C}^\infty(U,\RR^n)$. Si $\varepsilon>0$ y $\alpha:(-\varepsilon,\varepsilon)\to U$ son tales que $\alpha(0)=u$ y $(\x\circ\alpha)'(0)=X$, entonces el elemento $(f\circ\alpha)'(0)\in\RR^n$ sólo depende de $X$ y de $f$ y \textbf{no} de la elección de $\alpha$ y $\varepsilon$. Denotamos luego $Xf=(f\circ\alpha)'(0)$.
+\item Si $X^1,X^2\in\RR$ son tales que $X=\displaystyle\sum_{i=1}^2 X^i\x_i(u)$, entonces $Xf = \displaystyle\sum_{i=1}^2 X^i\partial_i f(u)$.
+\item La función $\mathscr{C}^\infty(U,\RR^n)\to\RR^n$ dada por $f\mapsto Xf$ es $\RR$-lineal.
+\item Si $f\in\mathscr{C}^\infty(U,\RR)$ y $g\in\mathscr{C}^\infty(U,\RR^n)$, entonces $X(fg)=Xf\, g(u) + f(u)Xg$.
+\end{enumerate}
+\begin{proof}
+\hfill
+
+\begin{enumerate}
+\item Sean $\varepsilon>0$, $\alpha,\beta:(-\varepsilon,\varepsilon)\to U$ tales que se cumple que $\alpha(0)=\beta(0)=u$ y $(\x\circ\alpha)'(0)=X=(\x\circ\beta)'(0)$. Más concretamente, esto se puede escribir como $\displaystyle\sum_{i=1}^2 (\alpha^i)'(0)\x_i(u) = \displaystyle\sum_{i=1}^2 (\beta^i)'(0)\x_i(u)$. Usando que $\{\x_1(u),\x_2(u)\}$ es una base, tenemos que $(\alpha^i)'(0)=(\beta^i)'(0)$.
+Sea $f\in\mathscr{C}(U,\RR^n)$. Veamos que $(f\circ\alpha)'(0)=(f\circ\beta)'(0)$, esto implicará la buena definición $Xf$. Pero esto es: $$(f\circ\alpha)'(0)=\displaystyle\sum_{i=1}^2 (\alpha^i)'(0)\partial_i f(u) = \displaystyle\sum_{i=1}^2 (\beta^i)'(0)\partial_{i} f(u)=(f\circ\beta)'(0)$$
+\item Sea $\gamma:\RR\to\RR^2$ dada por $\gamma(t)=u+t(X^1,X^2)$. Como $\gamma(0)=u\in U$ y $U$ es abierto, podemos restringirnos a $\gamma:(-\varepsilon,\varepsilon)\to U$. Además, tenemos que: $$(\x\circ\gamma)'(0)=\displaystyle\sum_{i=1}^2 (\gamma^i)'(0)\x_i(u) = \displaystyle\sum_{i=1}^2 X^i \x_i(u)=X$$ Por lo tanto, por el item 1, $Xf=(f\circ\gamma)'(0)$ y es fácil corroborar, por la regla de la cadena, que $(f\circ\gamma)'(0)=\displaystyle\sum_{i=1}^2 (\gamma^i)'(0)\partial_i f(u)=\displaystyle\sum_{i=1}^2 X^i\partial_i f(u)$.
+\item Es inmediato con el item 2 y la linealidad de $\partial_i$.
+\item Es inmediato con el item 2.
+\end{enumerate}
+\end{proof}
+\end{prop}
+
+\begin{defn}
+Un conjunto $S\subseteq\RR^3$ es una \textbf{superficie} si para todo $p\in S$ existe una carta $\x:U\to\RR^3$ tal que:
+\begin{itemize}
+\item $p\in\x(U)\subseteq S$.
+\item $\x(U)$ es un abierto de $S$.
+\item La correstricción $\x:U\to\x(U)$ tiene inversa continua.
+\end{itemize}
+Una tal carta $\x$ se denomina una carta de $S$.
+\end{defn}
+
+\begin{prop}
+Sea $S\subseteq\RR^3$ una superficie y $V\subseteq S$ un abierto de $S$. Entonces $V$ es una superficie.
+\begin{proof}
+Sea $p\in V$. Como $S$ es una superficie, existe $U\subseteq\RR^2$ abierto y $\x:U\to\RR^3$ una carta de $S$ tal que $p\in\x(U)$. Como $V$ es abierto en $S$ y $\x:U\to S$ es continua, entonces $\x^{-1}(V)$ es abierto. Consideremos $\y=\left.\x\right|_{\x^{-1}(V)}:\x^{-1}(V)\to\RR^3$. Claramente $\y$ es una carta, pues $\x^{-1}(V)$ es abierto, $\x$ es inyectiva y así su restricción lo es y $\partial_i\y(u)=\partial_i\x(u)$ para cada $u\in\x^{-1}(V)$, lo que implica que $\{\partial_1\y(u),\partial_2\y(u)\}$ son linealmente independientes por ser $\x$ una carta. 
+
+Notemos que $p\in\y(\x^{-1}(V))$ pues $p\in V\cap\x(U)$. Además, $\y(\x^{-1}(V)) = V\cap\x(U)$, que es un abierto de $V$, por ser $\x(U)$ un abierto de $S$. Finalmente, $\y$ tiene inversa continua, pues simplemente es retringir la inversa de $\x$ a $V\cap\x^{-1}(V)$. Esto concluye la demostración.
+\end{proof}
+\end{prop}
+
+\begin{prop}\label{prop::valoresregulares}
+Sea $W\subseteq\RR^3$ abierto y $f:W\to\RR$ de clase $\mathscr{C}^\infty$. Entonces el conjunto $S=\{p\in\RR^3 : f(p)=0\}$ es una superficie para todo $p\in S$ tal que $\nabla f(p)\neq 0$.
+\begin{proof}
+El principal ingrediente de la demostración será el Teorema de la Función Inversa. Sea $p\in S$. Por hipótesis, $\nabla f(p)\neq 0$. Sin pérdida de la generalidad, supongamos que $\partial_3 f(p)\neq 0$. Sea $F:W\to\RR^3$ la función dada por $F(q^1,q^2) = (q^1,q^2,f(q^1,q^2))$. La diferencial de $F$ en $p$ está dada por la matriz $$\D F(p)=\begin{pmatrix}1&0&0\\0&1&0\\ \partial_1f(p)&\partial_2f(p)&\partial_3f(p)\end{pmatrix}$$ Esta matriz resulta inversible por ser $\partial_3f(p)\neq 0$. Por el Teorema de la Función Inversa, existen abiertos $A\subseteq W$, $B\subseteq\RR^3$ tales que $p\in A$, $F(A)=B$ y $F:A\to B$ es biyectiva, de clase $\mathscr{C}^\infty$ y con inversa de clase $\mathscr{C}^\infty$. Además, $\D F^{-1}(F(p))$ tiene por inversa a $\D F(p)$.
+
+Consideremos el abierto $U=\{(u^1,u^2)\in\RR^2 : (u^1,u^2,0)\in B\}$, y sea $\x:U\to\RR^3$ dada por $\x(u^1,u^2)=F^{-1}(u^1,u^2,0)$. Esta función es de clase $\mathscr{C}^\infty$ por ser composición de funciones $\mathscr{C}^\infty$ y toma valores en $A$. Si $u,v\in V$ son tales que $\x(u)=\x(v)$, entonces $F^{-1}(u,0)=F^{-1}(v,0)$ y así $u=v$ por ser $F^{-1}$ inyectiva. Esto implica que $\x$ es inyectiva. Además, notemos que $\partial_i\x(q) = \D F^{-1}(q,0)e_i$ para cada $q\in U$. por lo tanto, $\partial_1\x(q)$ y $\partial_2\x(q)$ deben ser linealmente independientes por ser esa matriz inversible. Esto implica que $\x$ es una carta.
+
+Ahora bien, si $u\in U$, por definición tenemos que $F(\x(u)) = (\x(u),f(\x(u)))$. Pero por otra parte, $F(\x(u)) = F(F^{-1}(u^1,u^2,0)) = (u^1,u^2,0)$. Por lo tanto, $f(\x(u))=0$ para cada $u\in U$. Es decir, $\x(U)\subseteq S$. Como $\x$ toma valores en $A$, tenemos que $\x(U)\subseteq A\cap S$. Recíprocamente, si $p\in A\cap S$, entonces $f(p)=0$ y así $F(p)=(p^1,p^2,0)$. Luego, esto implica que $\x(p)=F^{-1}(p^1,p^2,0)=F^{-1}(F(p))=p$. Es decir, $\x(U)=A\cap S$, y en particular es un abierto de $S$. Por último, consideremos la proyección $\pi:\RR^3\to\RR^2$, $\pi(x)=(x^1,x^2)$. Claramente es continua y $\pi(F(A\cap S))=U$. Si miro la restricción $\left.\pi\circ F\right|_{A\cap S}:A\cap S = \x(U)\to U$, entonces es fácil ver que $\pi\circ F$ es la inversa de $\x$. La proposición sigue.
+\end{proof}
+\end{prop}
+
+\begin{ex}
+La Proposición ~\ref{prop::valoresregulares} nos permite probar que la mayoría de las superficies que conocemos son de hecho superficies bajo nuestra definición. Por ejemplo, una esfera, $S=\{(x,y,z)\in\RR^3 : x^2+y^2+z^2 =1\}$ simplemente la podemos pensar como $f^{-1}(0)$ donde $f(x,y,z)=x^2+y^2+z^2-1$ pues $\nabla f(p)=(2p^1,2p^2,2p^3)$ sólo se anula si $p=0\notin S$. De manera similar podemos probar que un paraboloide $S=\{(x,y,z)\in\RR^3 : z = x^2+y^2\}$ es una superficie. En ambos casos, no tuvimos que exhibir un conjunto de cartas, y por eso la utilidad de esta Proposición. \textcolor{red}{Agregar cuentitas con cartas antes de la proposición}
+\end{ex}
+
+\begin{cor}
+Sea $U\subseteq\RR^2$ un abierto y $f:U\to\RR$ una función diferenciable. El gráfico de $f$, $S=\{(u,f(u)) : u\in U\}\subseteq\RR^3$ es una superficie.
+\begin{proof}
+Sea $W=U\times\RR\subseteq\RR^3$ abierto y sea $F:U\times\RR\to\RR$, $F(u,t)=f(u)-t$. Es claro que $F^{-1}(0)=S$. Por otra parte, $\nabla F(u,t)=(\partial_1f(u),\partial_2f(u),-1)\neq 0$. Aplicando la Proposición ~\ref{prop::valoresregulares} ya estamos.
+\end{proof}
+\end{cor}
+
+\begin{cor}
+Toda superficie es localmente el gráfico de una función.
+\begin{proof}
+\textcolor{red}{HACER!}
+\end{proof}
+\end{cor}
+
+El siguiente resultado técnico nos será muy útil. En esencia, nos permitirá extender funciones continuas sobre una superficie $S\subseteq\RR^3$ a funciones diferenciables en un entorno de un punto $p\in S\subseteq\RR^3$. \textcolor{red}{Escribir esto mejor...}
+
+\begin{prop}\label{prop::ensanchetecnico}
+Sea $S\subseteq\RR^3$ una superficie. Si $\x:U\to\RR^3$ es una carta tal que $\x(U)\subseteq S$, entonces $\x$ es una carta de $S$. Más aún, para cada $u\in U$ existe un abierto $W\subseteq\RR^3$ y una función diferenciable $r:W\to\RR^2$ tal que $\x(u)\in W\cap S\subseteq\x(U)$ y $\x^{-1}(q)=r(q)$ para todo $q\in W\cap S$.
+\begin{proof}
+Sea $u_0\in U$ y $p=\x(u_0)$. Como $S$ es una superficie, hay una carta de $S$, $\y:V\to S$ tal que $\y(v_0)=p$ para algún $v_0\in V$. También, existe $\Omega\subseteq\RR^3$ abierto tal que $\y(V)=\Omega\cap S$. Sea $\n:V\to\RR^3$ el campo normal a $\y$, y consideremos la función $\widetilde{\y}:V\times\RR\to\RR^2$ dada por $\widetilde{\y}(v,t)=\y(v)+t\n(v)$. Claramente se tiene que $\widetilde{\y}(v_0,0)=p$. También es fácil ver que $\partial_1\widetilde{\y}(v_0,0)=\partial_1\y(v_0)$, $\partial_2\widetilde{\y}(v_0,0) = \partial_2\y(v_0)$ y $\partial_3\widetilde{\y}(v_0,0)=\n(v_0)$. Estos tres vectores resultan ser linealmente independientes por ser $\y$ una carta. Por lo tanto, la matriz $\D\widetilde{\y}(v_0,0)$ es inversible.
+\textcolor{red}{Agregar el primer dibujo de la demo}
+
+Por lo tanto, existen abiertos $A\subseteq V\times\RR$, $B\subseteq\RR^3$ tales que $(v_0,0)\in A$, $\widetilde{\y}(v_0,0)\in B$ y además $\widetilde{\y}:A\to B$ es biyectiva, de clase $\mathscr{C}^\infty$ y su inversa también. Más aún, podemos suponer (por la demostración del Teorema de la Función Inversa) que $B\subseteq\Omega$. Es fácil ver que $\widetilde{\y}(V\times\{0\}) \subseteq S$ y $\widetilde{\y}^{-1}(B\cap S) \subseteq V\times\{0\}$. Como $\x$ es continua y $\x(u_0)\in B$, se tiene que $\x^{-1}(B)\subseteq U$ es un abierto de $U$ y $u_0\in\x^{-1}(B)$. Consideremos entonces $h:\x^{-1}(B)\to V$ dada por $h=\pi\circ\widetilde{\y}^{-1}\circ\x$, donde $\pi:V\times\RR\to V$ es la proyección en la primera coordenada. Sea $\iota:V\to V\times\{0\}$ la inclusión canónica. Notemos que $\iota\circ h = \widetilde{\y}^{-1}\circ\x$ sobre $\x^{-1}(B)$ por ser $\widetilde{\y}^{-1}(B\cap S) = V\times\{0\}$. Ahora bien, por regla de la cadena tenemos que $\D(\iota\circ h)(u_0)=\D\iota(h(u_0))\D h(u_0)$. Por otra parte, tenemos que $\D(\widetilde{\y}^{-1}\circ\x(u_0))=\D\widetilde{\y}^{-1}(\x(u_0))\D\x(u_0) = \D\widetilde{\y}^{-1}(p)\D\x(u_0)$. Como $\D\widetilde{\y}^{-1}(p)$ y $\D\x(u_0)$  son inyectivas, su producto (ie. composición) lo es y así $\D(\iota\circ h)(u_0)$ debe serlo. Esto implica que $\D h(u_0)$ es inyectivo. Pero como $h:\RR^2\to\RR^2$, $\D h(u_0)$ es una transformación lineal inyectiva entre espacios vectoriales de la misma dimensión. Es decir, $\D h(u_0)$ debe ser inversible. Aplicamos el Teorema de la Función Inversa nuevamente. Existen abiertos $B'\subseteq\x^{-1}(B)$, $A'\subseteq V$ con $u_0\in B'$, $h(B')=A'$ y $h:B'\to A'$ biyectiva de clase $\mathscr{C}^\infty$ con inversa de clase $\mathscr{C}^\infty$. \textcolor{red}{Agregar el segundo dibujo}
+
+Como $\y\circ\pi\circ\widetilde{\y}^{-1}$ es la identidad, tenemos que: $$\x(B')=(\y\circ\pi\circ\widetilde{\y}^{-1}\circ\x)(B')=\y(h(B'))=\y(A')$$ Por lo tanto, $\x(B')$ es un abierto de $S$ por serlo $\y(A')$ ya que $\y$ es una carta de $S$. Notemos además que $p\in\x(B')$ pues $p\in\y(A')$. Como $p\in\x(B')\subseteq\x(U)$, tenemos que todo punto de $\x(U)$ es un punto interior por ser $\x(B')$ abierto en $S$. Es decir, $\x(U)$ es abierto en $S$.
+
+Sólo resta ver que existen $W\subseteq\RR^3$ abierto tal que $\x(u)\in W\cap S\subseteq \x(U)$ y una función $r:W\to\RR^2$ tal que $\x^{-1}(q)=r(q)$ para todo $q\in W\cap S$. Para ello consideramos $W = \widetilde{\y}(A\cap\pi^{-1}(A')) \subseteq B$ abierto (por la continuidad de $\pi$ y $\widetilde{\y}$), y la función dada por $r=h^{-1}\circ\pi\circ\widetilde{\y}^{-1}:W\to\RR^2$. Entonces, tendremos que $r\circ \x(u)=u$. En efecto, esto se debe a que $r\circ\x = h^{-1}\circ\pi\circ\widetilde{\y}^{-1}\circ\x = h^{-1}\circ h = 1$. Esto implica que $r$ es la inversa de $\x$ en $W\cap S$. Y estamos.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+Sea $S$ es una superficie y $\x:U\to S$, $\y:V\to S$ dos cartas. Sea $W=\x(U)\cap\y(V)$. Entonces la función $\varphi:\y^{-1}(W)\to\x^{-1}(W)$ dada por $\varphi=\x^{-1}\circ\y$ es un cambio de coordenadas.
+\begin{proof}
+Notemos que $\varphi$ es claramente biyectiva pues tiene por inversa a la función $\psi:\x^{-1}(W)\to\y^{-1}(W)$ dada por $\psi=\y^{-1}\circ\x$. Ahora bien, por la Proposición anterior ~\ref{prop::ensanchetecnico}, existe una función $r$ diferenciable definida en un abierto de $\RR^3$ que contiene a $W$ tal que $\x^{-1}\circ\y = r\circ\y$. Como $r$, $\y$ son diferenciables, la composición lo es. Esto concluye la demostración.
+\end{proof}
+\end{prop}
+
+Notemos que en la demostración tuvimos que conseguir una función en un entorno de $W$ para poder hablar de la diferenciabilidad. Definamos una noción de diferenciabilidad para funciones cuyo dominio es una superficie.
+
+\begin{defn}
+Sea $S\subseteq\RR^3$ una superficie. Una función $f:S\to\RR^n$ se dice \textbf{diferenciable} si es continua y para cada carta $\x:U\to S$ la función $f\circ\x:U\to\RR^n$ es diferenciable.
+\end{defn}
+
+\begin{prop}\label{prop::diferenciabilidadcartas}
+Si $S\subseteq\RR^3$ es una superficie y $f:S\to\RR^n$ es una función continua, entonces $f$ es diferenciable si y sólo si para cada $p\in S$ existe una carta $\x:U\to S$ tal que $p\in\x(U)$ y la composición $f\circ\x:U\to\RR^n$ es diferenciable.
+\begin{proof}
+\hfill
+
+$(\Longrightarrow)$ No hay nada que probar.
+
+$(\Longleftarrow)$ Sea $\x:U\to\RR^3$ una carta con $\x(U)\subseteq S$. Para ver que $f\circ\x:U\to\RR^n$ es diferenciable, basta con probarlo para cada punto $u\in U$. Fijemos $u\in U$ y sea $p=\x(u)$. Sabemos que existe una carta $\y:V\to S$ tal que $p\in\y(V)$ y $f\circ\y$ es diferenciable. Sabemos que $W=\x(U)\cap\y(V)$ es un abierto de $S$, $\x^{-1}(W)$, $\y^{-1}(W)$ son abiertos de $\RR^2$ y el cambio de coordenadas $\varphi = \y^{-1}\circ\x : \x^{-1}(W)\to\y^{-1}(W)$ es diferenciable. Como la restricción de $f\circ\x$ a $\x^{-1}(W)$ coincide con $f\circ\y\circ\varphi$, que es diferenciable y $u\in\x^{-1}(W)$, resulta que $f\circ\x$ es diferenciable en $u$. La proposición sigue.
+\end{proof}
+\end{prop}
+
+\begin{obs}
+Notemos que la composición de funciones diferenciables es diferenciable. Esto es fácil de ver usando la Proposición ~\ref{prop::ensanchetecnico}.
+\end{obs}
+
+\begin{defn}
+Sea $S\subseteq\RR^3$ una superficie y $p\in S$ un punto. Un vector $X\in\RR^3$ es tangente a $S$ en $p$ si existe $\varepsilon>0$ y $\alpha:(-\varepsilon,\varepsilon)\to S\subseteq\RR^3$ diferenciable tal que $\alpha(0)=p$ y $\alpha'(0)=X$. Definimos por $\mathrm{T}_p(S)$ al conjunto de los vectores tangentes a $S$ en $p$.
+\end{defn}
+
+Ahora demos una descripción del espacio tangente que sea intrínseca de la superficie. Es decir, que no dependa de la carta que tomemos.
+
+\begin{prop}
+Sea $S\subseteq\RR^3$ una superficie y $p\in S$ un punto. Sea $\x:U\to S$ una carta. Si $u\in U$ es tal que $\x(u)=p$, entonces $\mathrm{T}_p(S) = \D_{\x}(u)(\RR^2)$. En particular, $\mathrm{T}_p(S)\subseteq\RR^3$ es un subespacio vectorial de dimensión $2$. Más aún, $\{\partial_1\x(u),\partial_2\x(u)\}$ es una base de $\mathrm{T}_p(S)$.
+\begin{proof}
+Notemos que si $X\in\mathrm{T}_{\x}(u)=\D_{\x}(u)(\RR^2)$, entonces existe $\alpha:(-\varepsilon,\varepsilon)\to U$ tal que $\alpha(0)=u$, $X=(\x\circ\alpha)'(0)$. Si tomamos $\beta:(-\varepsilon,\varepsilon)\to S$ dada por $\beta = \x\circ\alpha$, entonces $\beta(0)=p$ y $\beta'(0)=(\x\circ\alpha)'(0)=X$. Es decir, $X\in\mathrm{T}_p(S)$. Recíprocamente, si $X\in\mathrm{T}_p(S)$, entonces existe $\alpha:(-\varepsilon,\varepsilon)\to S$ tal que $\alpha(0)=p$ y $\alpha'(0)=X$. Por la Proposición ~\ref{prop::ensanchetecnico} existe un abierto $W\subseteq\RR^3$ tal que $p\in W$ y una función diferenciable $r:W\to \RR^2$ tal que $r(\x(q))=q$ para todo $q\in W\cap S$. Por la regla de la cadena obtenemos que $\D_{r}(p)=\D_{r}(\x(u))=\D_{\x}(u)^{-1}$. Ahora bien, consideremos $\beta:(-\varepsilon,\varepsilon)\to U$ dada por $\beta=r\circ\alpha$. Notemos que $\beta(0)=r(\alpha(0))=r(p)=\x^{-1}(p)=u$. Además, $(\x\circ\beta)'(0)=(\x\circ r\circ\alpha)'(0)=\D_{\x}(u)\D_{r}(p)\alpha'(0)=\alpha'(0)=X$. Esto prueba que $X\in\mathrm{T}_{\x}(u)$. Por lo tanto, $\mathrm{T}_p(S)=\mathrm{T}_{\x}(u)$ y como ya vimos que $\mathrm{T}_{\x}(u)$ es un espacio vectorial de dimensión $2$ con base $\{\partial_1\x(u),\partial_2\x(u)\}$, la proposición sigue.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+Si $f:S\to\RR^n$ es una función diferenciable y $X\in\mathrm{T}_p(S)$, definimos $Xf=(f\circ\alpha)'(0)$ con $\alpha:(-\varepsilon,\varepsilon)\to S$ una curva tal que $\alpha(0)=p$, $\alpha'(0)=X$. La función $\diff_p f:\mathrm{T}_p(S)\to\RR^n$ definida por $X\mapsto Xf$ es una función lineal que denominaremos la \textbf{diferencial} de $f$ en $p$.
+\begin{proof}
+Debemos notar que a cualquier $\alpha:(-\varepsilon,\varepsilon)\to S$ con $\alpha(0)=p$ y $\alpha'(0)=X$ la podemos escribir como $\alpha=\x\circ\beta$ donde $\x:U\to S$ es una carta, $\x(u)=p$ y $\beta:(-\varepsilon,\varepsilon)\to U$ es tal que $\beta(0)=u$. Esto lo podemos hacer ensanchando un poco el abierto y tomando la inversa diferenciable en virtud de la Proposición ~\ref{prop::ensanchetecnico}. Ahora simplemente recordamos la Proposición ~\ref{prop::tangenteconcartas} que nos daba la buena definición del espacio tangente cuando lo definimos con cartas. Y estamos.
+\end{proof}
+\end{prop}
+
+\section{Geometría Intrínseca}
+
+El objetivo de esta sección será poder calcular distancias, ángulos, aspectos métricos en general, con información propia de la superficie y no del espacio ambiente en el que estamos. Notemos que $\RR^3$ es un espacio provisto de un producto interno, y si $S\subseteq\RR^3$ es una superficie, entonces para cada punto $p\in S$ el espacio tangente $\mathrm{T}_p(S)\subseteq\RR^3$ es un subespacio y así hereda el producto interno de $\RR^3$. Es decir, tenemos un producto interno $\pint{-,-}_p:\mathrm{T}_p(S)\times\mathrm{T}_p(S)\to\RR$. La \textbf{Primera Forma Fundamental} se define por $\mathrm{I}_p:\mathrm{T}_p(S)\to\RR$, $\mathrm{I}_p(v)=\pint{v,v}_p$. Recordemos que por las identidades de polarización tenemos que $\pint{v,w}_p = \dfrac{1}{2}\left(\mathrm{I}_p(v+w)-\mathrm{I}_p(v)-\mathrm{I}_p(w) \right)$, por lo tanto conocer a la Primera Forma Fundamental o conocer al producto interno serán lo mismo. La Primera Forma Fundamental será nuestro principal objeto, pues será lo que nos permitirá medir dentro de la superficie.
+
+Si $\x:U\to S$ es una carta, tenemos las derivadas direccionales $\x_1,\x_2:\x(U)\to\mathrm{T}_p(S)$ dadas por $\x_i(p)=\partial_i\x(\x^{-1}(p))$. Sabemos que el espacio tangente $\mathrm{T}_p(S)$ tiene por base a $\{\x_1(p),\x_2(p)\}$. Por lo tanto, si conocemos los productos internos $\pint{\x_i(p),\x_j(p)}_p$ para cada $1\leq i,j\leq 2$, entonces conoceremos perfectamente a la Primera Forma Fundamental. Definimos entonces $g_{ij}:\x(U)\to\RR$ por $g_{ij}(p)=\pint{\x_i(p),\x_j(p)}_p$ los \textbf{coeficientes métricos} (del tensor métrico si queremos ser específicos). Estas funciones $g_{ij}$ son claramente diferenciables. Si $X,Y\in\mathrm{T}_p(S)$, entonces escribiendo en coordenadas, $X=X^1\x_1(p)+X^2\x_2(p)$, $Y=Y^1\x_1(p)+Y^2\x_2(p)$. Por lo tanto, distribuyendo el producto interno, $\pint{X,Y}_p = \displaystyle\sum_{1\leq i,j\leq 2}X^iY^j g_{ij}(p)$. Consideramos la matriz $G(p) = \begin{pmatrix}g_{11}(p)& g_{12}(p)\\ g_{21}(p)& g_{22}(p)\end{pmatrix}$. Como es la matriz de un producto interno, debe resultar definida positiva y así su determinante $\det G(p) = g(p)>0$. Ahora bien, nuestra definición depende \textit{fuertemente} de la elección de la carta, así que nos gustaría saber cómo se modifica al tomar otra carta. Si $\x:U\to S$, $\y:V\to S$ son dos cartas, sea $W=\x(U)\cap\y(V)$. Sabemos que el cambio de coordenadas $\varphi:\y^{-1}(W)\to\x^{-1}(W)$ dado por $\varphi = \x^{-1}\circ\y$ es diferenciable. Si $v\in\y^{-1}(W)$, como $\y=\x\circ\varphi$, resulta que: $$\y_i(\y(v))=(\partial_i\y)(v) = \displaystyle\sum_{j=1}^2\partial_j\x(\varphi(v))\partial_i\varphi^j(v) = \displaystyle\sum_{j=1}^2 \partial_i\varphi^j(v)\x_j(\varphi(v))$$
+Por lo tanto, si $g_{ij}$ son los coeficientes métricos para la carta $\x$ y $\overline{g_{ij}}$ son los coeficientes métricos para la carta $\y$, tenemos: $$\overline{g_{ij}} =\pint{\y_i,\y_j} = \pint{ \displaystyle\sum_{k=1}^2 \partial_i\varphi^k \x_k , \displaystyle\sum_{\ell=1}^2 \partial_j\varphi^\ell \x_\ell} = \displaystyle\sum_{1\leq k,\ell\leq 2} \partial_i\varphi^k\partial_j\varphi^\ell g_{k\ell}$$ Interpretando esto matricialmente, simplemente es $\overline{G} = \D_\varphi G\D_{\varphi}^t$. Por lo tanto, calculando el determinante se tiene que $\overline{g} = g \J_\varphi^2$. Notaremos además por $G^{-1}=(g^{ij})_{1\leq i,j\leq 2}$ a la matriz inversa de $G=(g_{ij})_{1\leq i,j\leq 2}$.
+
+\begin{defn}
+Sea $S$ una superficie arcoconexa. Sea $\diff_S:S\times S\to\RR$ la función definida por: $$\diff_S(p,q) = \inf\{\mathrm{Long}(\sigma) \,|\, \sigma:[a,b]\to S, \sigma(a)=p, \sigma(b)=q, \sigma \text{ es }\mathscr{C}^\infty \text{ a trozos}\} $$ Es fácil ver que $\diff_S$ es una métrica y la denominaremos la \textbf{distancia intrínseca} de $S$.
+\end{defn}
+
+\begin{defn}
+Sean $S,S'$ superficies. Una función $f:S\to S'$ se dice un \textbf{difeomorfismo} si es biyectiva, diferenciable y con inversa diferenciable.
+\end{defn}
+
+\begin{defn}
+Un difeomorfismo $f:S\to S'$ es una \textbf{isometría} si preserva las métricas intrínsecas. Es decir, si $\diff_{S'}(f(p),f(q))=\diff_S(p,q)$ para todos $p,q\in S$.
+\end{defn}
+
+\begin{obs}
+Notemos que ahora las isometrías son en esencia locales. En el caso de las curvas, no tenía sentido pensar en estas isometrías pues si parametrizamos a las curvas por longitud de arco, toda curva de longitud $L$ es isométrica (en este sentido) a $[0,L]$.
+\end{obs}
+
+\begin{defn}
+Sea $S$ una superficie. Decimos que $\n:S\to\RR^3$ es un \textbf{campo normal} (o función de Gauss) si es diferenciable, $\norm{\n(p)}=1\;\forall p\in S$ y $\n(p)$ es ortogonal a $\mathrm{T}_p(S)$ para cada $p\in S$. 
+\end{defn}
+
+\begin{prop}
+Sea $S\subseteq\RR^3$ una superficie y $p\in S$. Entonces, existe un abierto $V\subseteq S$ tal que $p\in V$ y $V$ posee un campo normal. Es decir, para cualquier superficie existen localmente campos normales.
+\begin{proof}
+Sea $\x:U\to S$ una carta con $\x(u)=p$. Tomemos la función $\n:\x(U)\to\RR^3$ dada por: $$\n(q)=\dfrac{\partial_1\x(\x^{-1}(q))\wedge\partial_2\x(\x^{-1}(q))}{\norm{\partial_1\x(\x^{-1}(q))\wedge\partial_2\x(\x^{-1}(q))}}$$ Notemos que $\n$ es diferenciable pues al componerla con la carta $\x$ obtenemos una función diferenciable (pues miramos $\partial_1\x$, $\partial_2\x$ son diferenciables y así su producto vectorial, y tomar norma también). Como cubrimos a $\x(U)$ sólo con la carta $\x$ y $\n\circ\x$ es diferenciable, en virtud de la Proposición ~\ref{prop::diferenciabilidadcartas} se sigue que $\n$ es diferenciable. Esto concluye la demostración.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+Supongamos que $W\subseteq\RR^3$ es un abierto y $f:W\to\RR$ es de clase $\mathscr{C}^\infty$, $S=\{p\in\RR^3:f(p)=0\}$. Si $\nabla f(p)\neq 0$ para cada $p\in S$, entonces la superficie $S$ tiene un campo normal dado por $\n(p)=\dfrac{\nabla f(p)}{\norm{\nabla f(p)}}$.
+\begin{proof}
+El campo claramente es diferenciable, por ser $f$ de clase $\mathrm{C}^\infty$ y $\nabla f\neq 0$. Sea $X\in\mathrm{T}_p(S)$. Entonces, existe $\alpha:(-\varepsilon,\varepsilon)\to S$ tal que $\alpha(0)=p$ y $\alpha'(0)=X$. Ahora bien, como $\alpha((-\varepsilon,\varepsilon))\subseteq S$, tenemos que $f\circ\alpha\equiv 0$. Por lo tanto, por la regla de la cadena: $$0 = (f\circ\alpha)'(0)=\pint{\nabla f(\alpha(0)),\alpha'(0)} = \pint{\nabla f(p),X}$$ Es decir, $\nabla f(p)$ es ortogonal a $\mathrm{T}_p(S)$. Normalizándolo, se sigue lo deseado.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+Si $S\subseteq\RR^3$ es una superficie conexa y existe $\n:S\to\RR^3$ campo normal, entonces hay exactamente dos campos: $\n$ y $-\n$.
+\begin{proof}
+Sea $\bd{m}:S\to\RR^3$ un campo normal. Como $\bd{m}(p),\n(p)\in(\mathrm{T}_p(S))^\perp$ y $\dim (\mathrm{T}_p)^\perp = 1$, debe existir $\lambda:S\to\RR$ tal que $\bd{m}(p)=\lambda(p)\n(p)$. Tomando norma, se sigue que $\abs{\lambda(p)}=1$ y así $\lambda:S\to \{-1,1\}$. Como $\lambda(p)=\pint{\bd{m}(p),\n(p)}$, $\lambda$ es continua y como $S$ es conexo, debe ser que $\lambda$ es constante. Esto nos dice que $\bd{m}(p)=\n(p)$ o $\bd{m}(p)=-\n(p)$. Como queríamos probar.
+\end{proof}
+\end{prop}
+
+Sea $S\subseteq\RR^3$ es una superficie y $\n:S\to\RR^3$ es un campo normal. Si $p\in S$, y tenemos un vector tangente $X\in\mathrm{T}_p(S)$, entonces $X\n = (\n\circ\alpha)'(0)$ donde $\alpha:(-\varepsilon,\varepsilon)\to S$ con $\alpha(0)=p$ y $\alpha'(0)=X$. Como $\norm{\n\circ\alpha}=1$, tenemos que $\pint{(\n\circ\alpha)'(0),(\n\circ\alpha)(0)}=0$. Es decir, $\pint{X\n,\n}=0$. Esto implica que $X\n(p)\in \langle\n(p)\rangle^\perp = \mathrm{T}_p(S)$. Es decir, tenemos una asignación $\diff_p\n:\mathrm{T}_p(S)\to\mathrm{T}_p(S)$ dada por $\diff_p\n(X)=X\n(p)$.
+
+\begin{defn}
+Sea $S$ una superficie y $\n:S\to\RR^3$ un campo normal. Si $p\in S$, entonces $L_p=-\diff_p\n:\mathrm{T}_p(S)\to\mathrm{T}_p(S)$, $L_p(X)=-\diff_p\n(X) = -X\n(p)$ se denomina el \textbf{operador de forma} de $S$ en $p$.
+\end{defn}
+
+El operador de forma nos está midiendo la geometría de todas las curvas sobre $S$ que pasan por $p$ juntas. El problema de no tener una base distinguida para $\mathrm{T}_p(S)$ lo resolveremos mirando los autovectores del operador de forma $L$. En particular, forman una base ortonormal en virtud de la siguiente proposición:
+
+\begin{prop}
+Sea $S\subseteq\RR^3$ una superficie. Su operador de forma $L_p$ es autoadjunto para cada $p\in S$. En particular, $L_p$ es diagonalizable, con autovalores reales y una base ortonormal de autovectores.
+\begin{proof}
+Sea $\x:U\to S$ una carta con $\x(u)=p$. Notemos que $\pint{\n(p),\x_i(p)}=0$ por ser $\n(p)$ ortogonal al tangente $\mathrm{T}_p(S)$ y $\{\x_1(p),\x_2(p)\}$ una base del espacio tangente. Derivando la función $f(q)=\pint{\n(q),\x_i(q)}$ respecto de $\x_j(p)$ tenemos que: $$0 = \x_j(p)\pint{\n(p),\x_i(p)} = \pint{\x_j(p)\n(p),\x_i(p)} + \pint{\n(p),\x_j(p)\x_i(p)}$$ Ahora bien, $\x_j\x_i=\partial_j\x_i=\partial_j\partial_i\x$. Como $\x$ es de clase $\mathscr{C}^\infty$, las derivadas cruzadas conmutan, y así $\partial_j\partial_i\x = \partial_i\partial_j\x$. Por lo tanto, $\pint{\x_j(p)\n(p),\x_i(p)} = \pint{\x_i(p)\n(p),\x_j(p)}$. Es decir, $\pint{\diff_p(\x_j),\x_i} = \pint{\x_j,\diff_p(\x_i)}$. Como $\{\x_1(p),\x_2(p)\}$ es una base de $\mathrm{T}_p(S)$, esto concluye la demostración.
+\end{proof}
+\end{prop}
+
+\begin{defn}
+Sea $S\subseteq\RR^3$ una superficie y $p\in S$. La \textbf{curvatura Gaussiana} de $S$ en $p$ se define por $\kappa(p)=\det L_p$ y la \textbf{curvatura media} de $S$ en $p$ se define por $H(p)=\dfrac{1}{2}\tr L_p$. Las \textbf{curvaturas principales} de $S$ en $p$ son los autovalores de $L_p$ y las direcciones correspondientes a los autovectores son las \textbf{direcciones principales}. Por último, decimos que $p\in S$ es un punto \textbf{plano} si $\kappa(p)=0$, es \textbf{umbílico} si las dos curvaturas principales son iguales y es \textbf{hiperbólico} si $\kappa(p)<0$. \textcolor{red}{Agregar dibujo}
+\end{defn}
