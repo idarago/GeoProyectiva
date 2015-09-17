@@ -7,7 +7,7 @@ Una \textbf{carta} es una función $\x:U\subseteq\RR^2\to\RR^3$ definida en un a
 \end{defn}
 
 \begin{defn}
-Sea $\x:U\subseteq\RR^2\to\RR^3$ una carta. Las funciones $\x_1=\partial_1 \x:U\to\RR^3$ y $\x_2=\partial_2:U\to\RR^3$ se denominan \textbf{campos coordenados} y la función $\n:U\to\RR^3$ dada por $\n(u)=\dfrac{\x_1(u)\wedge \x_2(u)}{\norm{\x_1(u)\wedge \x_2(u)}}$ es el denominado \textbf{campo normal unitario}.
+Sea $\x:U\subseteq\RR^2\to\RR^3$ una carta. Las funciones $\x_1=\partial_1 \x:U\to\RR^3$ y $\x_2=\partial_2\x:U\to\RR^3$ se denominan \textbf{campos coordenados} y la función $\n:U\to\RR^3$ dada por $\n(u)=\dfrac{\x_1(u)\wedge \x_2(u)}{\norm{\x_1(u)\wedge \x_2(u)}}$ es el denominado \textbf{campo normal unitario}.
 \end{defn}
 
 \begin{defn}
@@ -33,8 +33,13 @@ Esto es no nulo por ser $\J_\varphi(v)\neq 0$ para todo $v\in V$ y $\x_1(v)\wedg
 
 \begin{defn}
 Si $\x:U\to\RR^3$ es una carta y $X\in\RR^3$ un vector, decimos que $X$ es \textbf{tangente} a $\x$ en $u\in U$ si existe $\varepsilon>0$ y $\alpha:(-\varepsilon,\varepsilon)\to U$ diferenciable tal que $\alpha(0)=u$ y $X = (\x\circ\alpha)'(0)$.
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.48\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/vectortangentesuperficie.jpg}
+	\caption{Un vector tangente a una carta $\x$ visto como la velocidad de una curva.}
+	\label{fig:vectortangentesuperficie}
+\end{figure}
 \end{defn}
-\textcolor{red}{Agregar dibujo!}
 
 \begin{prop}
 Sea $\x:U\to\RR^3$ una carta y $u\in U$. El conjunto $\mathrm{T}_{u}\x$ de todos los vectores tangentes a $\x$ en $u\in U$ es un subespacio vectorial de $\RR^3$ de dimensión $2$ que tiene al conjunto $\{\x_1(u),\x_2(u)\}$ como base y que es ortogonal a $\n(u)$.
@@ -58,7 +63,6 @@ Sea $X\in\mathrm{T}_v\y$. Luego, existen $\varepsilon>0$ y $\alpha:(-\varepsilon
 Ahora bien, para ver la otra parte de la proposición, utilizamos el cambio de coordenadas que nos da la Proposición ~\ref{prop::cartacambiodecoordenadas}: $$\displaystyle\sum_{i=1}^2 X^i \x_i(\varphi(v)) = \displaystyle\sum_{j=1}^2 Y^j \y_j(v)=\displaystyle\sum_{j=1}^2 Y^j \left(\displaystyle\sum_{i=1}^2 \partial_j\varphi^i \x_i(\varphi(v))\right) = \displaystyle\sum_{i=1}^2 \left(\displaystyle\sum_{j=1}^2 \partial_j\varphi^i Y^j\right)\x_i(\varphi(v))$$
 
 Como queríamos probar.
-\textcolor{red}{Agregar dibujo}
 \end{proof}
 \end{prop}
 
@@ -77,10 +81,8 @@ Sea $\x:U\to\RR^3$ una carta y $u\in U$ y fijemos $X\in\mathrm{T}_u\x$. Entonces
 \item Sean $\varepsilon>0$, $\alpha,\beta:(-\varepsilon,\varepsilon)\to U$ tales que se cumple que $\alpha(0)=\beta(0)=u$ y $(\x\circ\alpha)'(0)=X=(\x\circ\beta)'(0)$. Más concretamente, esto se puede escribir como $\displaystyle\sum_{i=1}^2 (\alpha^i)'(0)\x_i(u) = \displaystyle\sum_{i=1}^2 (\beta^i)'(0)\x_i(u)$. Usando que $\{\x_1(u),\x_2(u)\}$ es una base, tenemos que $(\alpha^i)'(0)=(\beta^i)'(0)$.
 Sea $f\in\mathscr{C}(U,\RR^n)$. Veamos que $(f\circ\alpha)'(0)=(f\circ\beta)'(0)$, esto implicará la buena definición $Xf$. Pero esto es: $$(f\circ\alpha)'(0)=\displaystyle\sum_{i=1}^2 (\alpha^i)'(0)\partial_i f(u) = \displaystyle\sum_{i=1}^2 (\beta^i)'(0)\partial_{i} f(u)=(f\circ\beta)'(0)$$
 \item Sea $\gamma:\RR\to\RR^2$ dada por $\gamma(t)=u+t(X^1,X^2)$. Como $\gamma(0)=u\in U$ y $U$ es abierto, podemos restringirnos a $\gamma:(-\varepsilon,\varepsilon)\to U$. Además, tenemos que: $$(\x\circ\gamma)'(0)=\displaystyle\sum_{i=1}^2 (\gamma^i)'(0)\x_i(u) = \displaystyle\sum_{i=1}^2 X^i \x_i(u)=X$$ Por lo tanto, por el item 1, $Xf=(f\circ\gamma)'(0)$ y es fácil corroborar, por la regla de la cadena, que $(f\circ\gamma)'(0)=\displaystyle\sum_{i=1}^2 (\gamma^i)'(0)\partial_i f(u)=\displaystyle\sum_{i=1}^2 X^i\partial_i f(u)$.
-\item Es inmediato con el item 2 y la linealidad de $\partial_i$.
-\item Es inmediato con el item 2.
-\end{enumerate}
-\end{proof}
+\item Por el item 2. tenemos que: \begin{align*}X(f+\lambda g)&=\displaystyle\sum_{i=1}^2 X^i \partial_i(f+\lambda g)(u)\\ &= \displaystyle\sum_{i=1}^2 X^i (\partial_i f(u)+ \lambda \partial_i g(u)) = \displaystyle\sum_{i=1}^2 X^i\partial_i f(u) + \lambda \displaystyle\sum_{i=1}^2 X^i\partial_i g(u) = Xf + \lambda Xg\end{align*}
+\item Es inmediato con el item 2.\end{enumerate}\end{proof}
 \end{prop}
 
 \begin{defn}
@@ -137,9 +139,15 @@ El siguiente resultado técnico nos será muy útil. En esencia, nos permitirá 
 Sea $S\subseteq\RR^3$ una superficie. Si $\x:U\to\RR^3$ es una carta tal que $\x(U)\subseteq S$, entonces $\x$ es una carta de $S$. Más aún, para cada $u\in U$ existe un abierto $W\subseteq\RR^3$ y una función diferenciable $r:W\to\RR^2$ tal que $\x(u)\in W\cap S\subseteq\x(U)$ y $\x^{-1}(q)=r(q)$ para todo $q\in W\cap S$.
 \begin{proof}
 Sea $u_0\in U$ y $p=\x(u_0)$. Como $S$ es una superficie, hay una carta de $S$, $\y:V\to S$ tal que $\y(v_0)=p$ para algún $v_0\in V$. También, existe $\Omega\subseteq\RR^3$ abierto tal que $\y(V)=\Omega\cap S$. Sea $\n:V\to\RR^3$ el campo normal a $\y$, y consideremos la función $\widetilde{\y}:V\times\RR\to\RR^2$ dada por $\widetilde{\y}(v,t)=\y(v)+t\n(v)$. Claramente se tiene que $\widetilde{\y}(v_0,0)=p$. También es fácil ver que $\partial_1\widetilde{\y}(v_0,0)=\partial_1\y(v_0)$, $\partial_2\widetilde{\y}(v_0,0) = \partial_2\y(v_0)$ y $\partial_3\widetilde{\y}(v_0,0)=\n(v_0)$. Estos tres vectores resultan ser linealmente independientes por ser $\y$ una carta. Por lo tanto, la matriz $\D\widetilde{\y}(v_0,0)$ es inversible.
-\textcolor{red}{Agregar el primer dibujo de la demo}
 
-Por lo tanto, existen abiertos $A\subseteq V\times\RR$, $B\subseteq\RR^3$ tales que $(v_0,0)\in A$, $\widetilde{\y}(v_0,0)\in B$ y además $\widetilde{\y}:A\to B$ es biyectiva, de clase $\mathscr{C}^\infty$ y su inversa también. Más aún, podemos suponer (por la demostración del Teorema de la Función Inversa) que $B\subseteq\Omega$. Es fácil ver que $\widetilde{\y}(V\times\{0\}) \subseteq S$ y $\widetilde{\y}^{-1}(B\cap S) \subseteq V\times\{0\}$. Como $\x$ es continua y $\x(u_0)\in B$, se tiene que $\x^{-1}(B)\subseteq U$ es un abierto de $U$ y $u_0\in\x^{-1}(B)$. Consideremos entonces $h:\x^{-1}(B)\to V$ dada por $h=\pi\circ\widetilde{\y}^{-1}\circ\x$, donde $\pi:V\times\RR\to V$ es la proyección en la primera coordenada. Sea $\iota:V\to V\times\{0\}$ la inclusión canónica. Notemos que $\iota\circ h = \widetilde{\y}^{-1}\circ\x$ sobre $\x^{-1}(B)$ por ser $\widetilde{\y}^{-1}(B\cap S) = V\times\{0\}$. Ahora bien, por regla de la cadena tenemos que $\D(\iota\circ h)(u_0)=\D\iota(h(u_0))\D h(u_0)$. Por otra parte, tenemos que $\D(\widetilde{\y}^{-1}\circ\x(u_0))=\D\widetilde{\y}^{-1}(\x(u_0))\D\x(u_0) = \D\widetilde{\y}^{-1}(p)\D\x(u_0)$. Como $\D\widetilde{\y}^{-1}(p)$ y $\D\x(u_0)$  son inyectivas, su producto (ie. composición) lo es y así $\D(\iota\circ h)(u_0)$ debe serlo. Esto implica que $\D h(u_0)$ es inyectivo. Pero como $h:\RR^2\to\RR^2$, $\D h(u_0)$ es una transformación lineal inyectiva entre espacios vectoriales de la misma dimensión. Es decir, $\D h(u_0)$ debe ser inversible. Aplicamos el Teorema de la Función Inversa nuevamente. Existen abiertos $B'\subseteq\x^{-1}(B)$, $A'\subseteq V$ con $u_0\in B'$, $h(B')=A'$ y $h:B'\to A'$ biyectiva de clase $\mathscr{C}^\infty$ con inversa de clase $\mathscr{C}^\infty$. \textcolor{red}{Agregar el segundo dibujo}
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.60\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/dibuensanchetecnico.jpg}
+	\caption{Un dibujo que ilustra la demostración de la Proposición ~\ref{prop::ensanchetecnico}}
+	\label{fig:dibuensanchetecnico}
+\end{figure}
+
+Por lo tanto, existen abiertos $A\subseteq V\times\RR$, $B\subseteq\RR^3$ tales que $(v_0,0)\in A$, $\widetilde{\y}(v_0,0)\in B$ y además $\widetilde{\y}:A\to B$ es biyectiva, de clase $\mathscr{C}^\infty$ y su inversa también. Más aún, podemos suponer (por la demostración del Teorema de la Función Inversa) que $B\subseteq\Omega$. Es fácil ver que $\widetilde{\y}(V\times\{0\}) \subseteq S$ y $\widetilde{\y}^{-1}(B\cap S) \subseteq V\times\{0\}$. Como $\x$ es continua y $\x(u_0)\in B$, se tiene que $\x^{-1}(B)\subseteq U$ es un abierto de $U$ y $u_0\in\x^{-1}(B)$. Consideremos entonces $h:\x^{-1}(B)\to V$ dada por $h=\pi\circ\widetilde{\y}^{-1}\circ\x$, donde $\pi:V\times\RR\to V$ es la proyección en la primera coordenada. Sea $\iota:V\to V\times\{0\}$ la inclusión canónica. Notemos que $\iota\circ h = \widetilde{\y}^{-1}\circ\x$ sobre $\x^{-1}(B)$ por ser $\widetilde{\y}^{-1}(B\cap S) = V\times\{0\}$. Ahora bien, por regla de la cadena tenemos que $\D(\iota\circ h)(u_0)=\D\iota(h(u_0))\D h(u_0)$. Por otra parte, tenemos que $\D(\widetilde{\y}^{-1}\circ\x(u_0))=\D\widetilde{\y}^{-1}(\x(u_0))\D\x(u_0) = \D\widetilde{\y}^{-1}(p)\D\x(u_0)$. Como $\D\widetilde{\y}^{-1}(p)$ y $\D\x(u_0)$  son inyectivas, su producto (ie. composición) lo es y así $\D(\iota\circ h)(u_0)$ debe serlo. Esto implica que $\D h(u_0)$ es inyectivo. Pero como $h:\RR^2\to\RR^2$, $\D h(u_0)$ es una transformación lineal inyectiva entre espacios vectoriales de la misma dimensión. Es decir, $\D h(u_0)$ debe ser inversible. Aplicamos el Teorema de la Función Inversa nuevamente. Existen abiertos $B'\subseteq\x^{-1}(B)$, $A'\subseteq V$ con $u_0\in B'$, $h(B')=A'$ y $h:B'\to A'$ biyectiva de clase $\mathscr{C}^\infty$ con inversa de clase $\mathscr{C}^\infty$.
 
 Como $\y\circ\pi\circ\widetilde{\y}^{-1}$ es la identidad, tenemos que: $$\x(B')=(\y\circ\pi\circ\widetilde{\y}^{-1}\circ\x)(B')=\y(h(B'))=\y(A')$$ Por lo tanto, $\x(B')$ es un abierto de $S$ por serlo $\y(A')$ ya que $\y$ es una carta de $S$. Notemos además que $p\in\x(B')$ pues $p\in\y(A')$. Como $p\in\x(B')\subseteq\x(U)$, tenemos que todo punto de $\x(U)$ es un punto interior por ser $\x(B')$ abierto en $S$. Es decir, $\x(U)$ es abierto en $S$.
 
@@ -195,7 +203,7 @@ Debemos notar que a cualquier $\alpha:(-\varepsilon,\varepsilon)\to S$ con $\alp
 \end{proof}
 \end{prop}
 
-\section{Geometría Intrínseca}
+\section{Geometría Intrínseca y Coeficientes Métricos}
 
 El objetivo de esta sección será poder calcular distancias, ángulos, aspectos métricos en general, con información propia de la superficie y no del espacio ambiente en el que estamos. Notemos que $\RR^3$ es un espacio provisto de un producto interno, y si $S\subseteq\RR^3$ es una superficie, entonces para cada punto $p\in S$ el espacio tangente $\mathrm{T}_p(S)\subseteq\RR^3$ es un subespacio y así hereda el producto interno de $\RR^3$. Es decir, tenemos un producto interno $\pint{-,-}_p:\mathrm{T}_p(S)\times\mathrm{T}_p(S)\to\RR$. La \textbf{Primera Forma Fundamental} se define por $\mathrm{I}_p:\mathrm{T}_p(S)\to\RR$, $\mathrm{I}_p(v)=\pint{v,v}_p$. Recordemos que por las identidades de polarización tenemos que $\pint{v,w}_p = \dfrac{1}{2}\left(\mathrm{I}_p(v+w)-\mathrm{I}_p(v)-\mathrm{I}_p(w) \right)$, por lo tanto conocer a la Primera Forma Fundamental o conocer al producto interno serán lo mismo. La Primera Forma Fundamental será nuestro principal objeto, pues será lo que nos permitirá medir dentro de la superficie.
 
@@ -211,11 +219,28 @@ Sean $S,S'$ superficies. Una función $f:S\to S'$ se dice un \textbf{difeomorfis
 \end{defn}
 
 \begin{defn}
-Un difeomorfismo $f:S\to S'$ es una \textbf{isometría} si preserva las métricas intrínsecas. Es decir, si $\diff_{S'}(f(p),f(q))=\diff_S(p,q)$ para todos $p,q\in S$.
+Un difeomorfismo $f:S\to S'$ es una \textbf{isometría} si para todo $p\in S$ tenemos que $\diff_pf:\mathrm{T}_pS\to\mathrm{T}_{f(p)}S'$ es una isometría de espacios euclídeos.
 \end{defn}
 
 \begin{obs}
-Notemos que ahora las isometrías son en esencia locales. En el caso de las curvas, no tenía sentido pensar en estas isometrías pues si parametrizamos a las curvas por longitud de arco, toda curva de longitud $L$ es isométrica (en este sentido) a $[0,L]$.
+Con esta definición nueva de isometría, no toda isometría viene de un movimiento rígido. Consideremos las superficies $S=\left\{(x,y,z):-\dfrac{\pi}{2}<x<\dfrac{\pi}{2}, z=0\right\}$ y $S'=\{(x,y,z):x^2+y^2 = 1, x>0\}$ (son superficies por ser abiertos en superficies dadas como en la Proposición ~\ref{prop::valoresregulares}). Notemos que $\varphi:\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)\times\RR\to S$ dada por $\varphi(\theta,t)=(\theta,t,0)$ es una carta de $S$. Es fácil ver que $\varphi_\theta(\theta,t)=(1,0,0)$ y $\varphi_t(\theta,t)=(0,1,0)$. Entonces, $\{(1,0,0),(0,1,0)\}$ es una base (ortonormal) del espacio tangente a $S$ en el punto $p=(\theta,t,0)$. Consideremos la función $f:S\to S'$ dada por $f(\theta,t,0) = (\cos\theta,\sen\theta,t)$. Es decir, estamos enrollando la franja del plano $S$ en un pedazo de cilindro $S'$. Es fácil ver que $\diff_p f(\varphi_\theta)=(-\sen\theta,\cos\theta,0)$ y $\diff_p f(\varphi_t)=(0,0,1)$. Como $\diff_p f$ nos mandó una base ortonormal en otra, debe ser una isometría de espacios euclídeos. Claramente $f$ es un difeomorfismo. En efecto, es la restricción de una función diferenciable de $\RR^3$, así que componiendo con una carta diferenciable obtenemos una función diferenciable. Es fácil ver también que la inversa es diferenciable. Esto nos da una isometría entre una franja del plano y una franja del cilindro. Pero esta isometría $f$ no viene dada por un movimiento rígido, pues la imagen de la recta $\sigma:\RR\to S$, $\sigma(t)=(t,0,0)$ es $f\circ\sigma(t)=(\cos t,\sen t,0)$, que no preserva la curvatura.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.60\textwidth]{C:/Users/Nacho/Documents/Latex/Facultad/GeometriaProyectiva/GeoProyectiva/enrollandoelcilindro.jpg}
+	\caption{Enrollar una franja del plano en un cilindro es una isometría que no viene de un movimiento rígido.}
+	\label{fig:enrollandoelcilindro}
+\end{figure}
+\end{obs}
+
+Ahora que tenemos un poco más de idea de cómo es la geometría de una superficie, tratemos de precisar un poco la noción de geometría intrínseca. Una construcción que a cada superficie $S$ le asigna una función $\varphi_S:S\to\RR$ es un \textbf{invariante intrínseco} (con valores en $\RR$) si sólamente depende de la clase de isometría de $S$. Esto es, cada vez que $f:S\to S'$ es una isometría, vale que $\varphi_{S'}\circ f = \varphi_S$. Esta versión de invariantes intrínsecos depende únicamente de $S$, es decir, está libre de las coordenadas que podamos elegir sobre $S$. Para dar una versión en coordenadas, consideramos una construcción que a cada par $(S,\x)$ le asigna una función $\varphi_{S,\x}:\x(U)\to\RR$, donde $S$ es una superficie y $\x:U\to S$ una carta. Decimos en ese caso que una tal asignación es un \textbf{invariante intrínseco} si para cada isometría $f:S\to S'$ tenemos que $\varphi_{S',f\circ\x}\circ f = \varphi_{S,\x}$.
+
+\begin{obs}
+Las asignaciones $(S,\x)\stackrel{\varphi_{S,\x}}{\mapsto} (g_{ij}:\x(U)\to\RR)$ dadas por los coeficientes métricos son invariantes intrínsecos. En efecto, notemos primero que $f\circ\x$ es una carta de $S'$ (esto es simplemente usar que la composición de funciones diferenciables en el sentido de superficies es diferenciable, y eso es una fácil consecuencia de la Proposición ~\ref{prop::ensanchetecnico}). Ahora bien, queremos mirar los campos coordenados $(f\circ\x)_i$. Calculemos $(f\circ\x)_1$ la derivada respecto de la primera coordenada. Si tomamos $\alpha(t)=\x(u^1 +t,u^2)$ definida para $t\in(-\varepsilon,\varepsilon)$ tal que $(u^1+t,u^2)\in U$, entonces la derivada respecto de la primera coordenada de $f\circ\x$ en $u=(u^1,u^2)$ simplemente es $(f\circ\alpha)'(0)$. Si $p=\x(u)$, entonces $\alpha(0)=p$ y $\alpha'(0)=\x_1(p)$. Por lo tanto, por definición $(f\circ\alpha)'(0)=\diff_p f(\x_1(p))$. Hemos calculado entonces los campos coordenados de la carta $f\circ\x$ como $(f\circ\x)_i=\diff_p f(\x_i(p))$ (en particular, esto nos dice que los campos coordenados son intrínsecos). Entonces, sus coeficientes métricos están dados por $\varphi_{S',f\circ\x}\circ f(p)=\pint{\diff_p f(\x_i(p)),\diff_p f(\x_j(p))}$. Pero como $f$ es una isometría, $\diff_p f$ lo es, y así $\pint{\diff_p f(\x_i(p)),\diff_p f(\x_j(p))} = \pint{\x_i(p),\x_j(p)}$. Es decir, $\varphi_{S',f\circ\x}\circ f = \varphi_{S,\x}$. Esto prueba que los coeficientes métricos son intrínsecos.
+\end{obs}
+
+\begin{obs}
+La métrica intrínseca $\diff_S:S\times S\to\RR$ es un invariante intrínseco. En efecto, esto se sigue de que si $f:S\to S'$ es una isometría y $\sigma:(a,b)\to S$ es una curva, entonces $f\circ\sigma:(a,b)\to S'$ es una curva que tiene igual longitud que $\sigma$. Para ver esto notemos que podemos escribir a la longitud de $\sigma$ en términos de $\mathrm{I}_p$ y como los coeficientes métricos son invariantes, la Primera Forma Fundamental debe serlo. Por lo tanto, la longitud se preserva por isometrías y así la distancia intrínseca es un invariante intrínseco como queríamos ver.
 \end{obs}
 
 \begin{defn}
@@ -258,6 +283,86 @@ Sea $\x:U\to S$ una carta con $\x(u)=p$. Notemos que $\pint{\n(p),\x_i(p)}=0$ po
 \end{proof}
 \end{prop}
 
+Notemos que la demostración anterior funciona principalmente por el hecho de que las derivadas cruzadas conmutan. Es decir, que para los campos coordenados $\x_i,\x_j$ tenemos que $\diff\x_i(\x_j) - \diff\x_j(\x_i)=0$. Ahora bien, un \textbf{campo tangente} a una superficie $S$ es una función $\X:S\to\RR^3$ tal que para cada $p\in S$ se tiene $\X(p)\in\mathrm{T}_p(S)$. Denotamos por $\mathfrak{X}(S)$ al conjunto de todos los campos tangentes a $S$ que son diferenciables. Si tenemos $X,Y\in\mathfrak{X}(S)$, por lo general no es cierto que las derivadas cruzadas conmuten. Es decir, derivando a $Y$ respecto de $X(p)$ y a $X$ respecto de $Y(p)$ obtenemos resultados distintos. El \textbf{corchete de Lie} mide precisamente esto: $[X,Y]_p=X(p)Y-Y(p)X$.
+
 \begin{defn}
 Sea $S\subseteq\RR^3$ una superficie y $p\in S$. La \textbf{curvatura Gaussiana} de $S$ en $p$ se define por $\kappa(p)=\det L_p$ y la \textbf{curvatura media} de $S$ en $p$ se define por $H(p)=\dfrac{1}{2}\tr L_p$. Las \textbf{curvaturas principales} de $S$ en $p$ son los autovalores de $L_p$ y las direcciones correspondientes a los autovectores son las \textbf{direcciones principales}. Por último, decimos que $p\in S$ es un punto \textbf{plano} si $\kappa(p)=0$, es \textbf{umbílico} si las dos curvaturas principales son iguales y es \textbf{hiperbólico} si $\kappa(p)<0$. \textcolor{red}{Agregar dibujo}
 \end{defn}
+
+Sea $\x:U\to S$ una carta y sea $p\in\x(U)$. Como $\{\x_1(p),\x_2(p)\}$ es una base del espacio tangente $\mathrm{T}_p(S)$, existen escalares $L^i_{\; j}(p)$ tales que $L_p(\x_j(p))=\displaystyle\sum_{i=1}^2 L^i_{\; j}(p) \x_i(p)$. Esto define funciones $L^i_{\; j}:\x(U)\to\RR$. Como $\x_\ell\in\mathrm{T}_p(S)$, la función $\pint{\n,\x_\ell}$ es idénticamente nula. Derivándola respecto de $\x_j(p)$ para cada $p$ y usando la regla del producto, obtenemos $\pint{\diff_p\n(\x_j(p)),\x_\ell(p)}+\pint{\n(p),\diff_p\x_\ell(\x_j(p))} = 0$. Por lo tanto, se sigue que: $$\pint{L_p(\x_j(p)),\x_\ell(p)} = \pint{\n(p),\diff_p\x_\ell(\x_j(p))}$$ Esto implica que $\displaystyle\sum_{k=1}^2 L^k_{\; j}(p)\pint{\x_k(p),\x_\ell(p)} = \pint{\n(p),\diff_p\x_\ell(\x_j(p))}$. Pero en término de los coeficientes métricos, esto es $\displaystyle\sum_{k=1}^2 L^k_{\; j}(p) g_{k\ell}(p) = \pint{\n(p),\diff_p\x_\ell(\x_j(p))}$. Si multiplicamos a ambos lados por $g^{\ell i}(p)$ y sumamos respecto de $\ell$, obtenemos que: $$\displaystyle\sum_{\ell=1}^2 \sum_{k=1}^2 L^k_{\; j}(p)g_{k\ell}(p)g^{\ell i}(p) = \sum_{k=1}^2 L^k_{\; j}(p)\left(\sum_{\ell=1}^2 g_{k\ell}(p)g^{\ell i}(p)\right) = \sum_{k=1}^2 L^k_{\; j}(p) \delta_{i}^k = L^i_{\;j}(p)$$ Es decir, pudimos obtener el despeje: \begin{eqnarray}\label{eq::ecestructura}L^i_{\;j}(p) = \displaystyle\sum_{\ell=1}^2 \pint{\n(p),\diff_p\x_\ell(\x_j(p))}g^{\ell i}(p)\end{eqnarray} En particular, las funciones $L^i_{\;j}$ son diferenciables por ser sumas y productos de funciones diferenciables. Ahora bien, si miramos al operador de forma $L_p$ en la base ${\mathscr{B}(p)=\{\x_1(p),\x_2(p)\}}$, su matriz asociada es $[L_p]_{\mathscr{B}(p)}=\begin{pmatrix}L^1_{\;1}&L^1_{\;2}\\ L^2_{\; 1}& L^2_{\; 2}\end{pmatrix}$. Como la curvatura Gaussiana de $S$ en $p$ es $\kappa(p)=\det L_p = \det [L_p]_{\mathscr{B}(p)} = L^1_{\;1}L^{2}_{\;2}-L^{1}_{\;2}L^2_{\;1}$, que resulta diferenciable por serlo las funciones $L^{i}_{\;j}$. De manera análoga, la curvatura media de $S$ en $p$ es $H(p)=\dfrac{1}{2}\tr L_p =\dfrac{1}{2}\tr [L_p]_{\mathscr{B}(p)} =\dfrac{1}{2}\left(L^1_{\;1} + L^2_{\; 2}\right)$, que también resulta diferenciable.
+
+Supongamos que las curvaturas principales de $S$ en $p$ son $\kappa_1(p)\leq \kappa_2(p)$. Sabemos que son las raíces del polinomio característico $x^2 - \tr L_p x + \det L_p = x^2 - 2H(p)x + \kappa(p)$. Es decir, $\kappa_1 = H(p)-\sqrt{H(p)^2 - \kappa(p)}$ y $\kappa_2(p)=H(p)+\sqrt{H(p)^2 - \kappa(p)}$. Notemos que $\kappa_1$ y $\kappa_2$ son diferenciables siempre y cuando esa raíz sea no nula (pues sería suma y composición de funciones diferenciables). Pero esto implica que son diferenciables siempre y cuando las raices sean distintas, y en nuestro lenguaje geométrico eso es que el punto $p$ no sea umbilical. Por otra parte, si $p$ no es umbilical, hay un entorno $\x(U)$ de $p$ tal que ningún punto es umbilical (esto es por la continuidad de $\kappa_1-\kappa_2$ que no se anula en $p$). Podemos probar entonces el siguiente resultado.
+\begin{prop}
+Sea $S\subseteq\RR^3$ una superficie y $p\in S$. Si $p$ no es un punto umbilical, existe un entorno de $p$ donde podemos definir un campo tangente unitario con la dirección principal de cada autovector.
+\begin{proof}
+\textcolor{red}{Ejercicio!} (Usar Implícita?)
+\end{proof}
+\end{prop}
+
+Fijemos una carta $\x:U\to S$. Todo lo que hagamos ahora dependerá de esta carta, pero veremos que podemos pasar bien de una carta a la otra. Sabemos que $\{\x_1(p),\x_2(p),\n(p)\}$ es una base de $\RR^3$. Además, podemos escribir: $$\begin{cases}\diff_p\n(\x_j(p)) = -L_p(\x_j(p)) = -\displaystyle\sum_{i=1}^2 L^i_{\;j}(p)\x_i(p)\\ \diff_p\x_i(\x_j(p)) = \displaystyle\sum_{k=1}^2 \Gamma_{ij}^{\;\;k}(p)\x_k(p) + L_{ij}(p)\n(p)\end{cases}$$ Estas son las denominadas \textbf{ecuaciones de estructura}. Ahora bien, como las derivadas cruzadas conmutan $\diff_p\x_i(\x_j(p))=\diff_p\x_j(\x_i(p))$, tenemos que $\Gamma_{ij}^{\;\;k}=\Gamma_{ji}^{\;\;k}$ y $L_{ij}=L_{ji}$. Esta relación de (anti)simetría que aparece entre los coeficientes y las ecuaciones de estructura vendría a generalizar en algún sentido a la antisimetría de las ecuaciones de Frenet-Serret en curvas. Ahora bien, como $\n(p)$ es ortogonal a $\x_1(p)$ y $\x_2(p)$, es claro que tenemos $L_{ij}=\pint{\diff_p\x_i(\x_j(p)),\n(p)}$. Por lo tanto, la ecuación ~\ref{eq::ecestructura} se puede reescribir como $L^i_{\; j}(p)=\displaystyle\sum_{\ell=1}^2 L_{\ell j}(p)g^{\ell i}$. De manera similar a lo que venimos haciendo tenemos que $\pint{\diff_p\x_i(\x_j(p)),\x_\ell(p)} = \displaystyle\sum_{k=1}^2 \Gamma_{ij}^{\;\;k}(p)\pint{\x_k(p),\x_\ell(p)}=\displaystyle\sum_{k=1}^2\Gamma_{ij}^{\;\;k}(p)g_{k\ell}(p)$. Por lo tanto, multiplicando por $g^{\ell r}(p)$ y sumando sobre $\ell$, obtenemos que: $$\displaystyle\sum_{\ell=1}^2 \pint{\diff_p\x_i(\x_j(p)),\x_\ell(p)}g^{\ell r} = \sum_{\ell=1}^2 \sum_{k=1}^2 \Gamma_{ij}^{\;\; k}(p)g_{k\ell}(p)g^{\ell r}(p) = \sum_{k=1}^2 \Gamma_{ij}^{\;\; k}(p)\delta_{r}^k = \Gamma_{ij}^{\;\;r}(p)$$ A los coeficientes $\Gamma_{ij}^{\;\;k}$ se los denomina \textbf{símbolos de Christoffel}. Veamos que son de naturaleza intrínseca. Es decir, podemos escribirlos sólo en términos de los coeficientes métricos y la carta.
+
+\begin{prop}
+Para todos $i,j,k$, podemos expresar a los símbolos de Christoffel de manera intrínseca: $$\Gamma_{ij}^{\;\;k}(p)=\dfrac{1}{2}\displaystyle\sum_{\ell=1}^2 g^{\ell k}(p)\left(\x_j(p) g_{i\ell}(p)-\x_\ell(p) g_{ij}(p)+\x_i(p) g_{ij}(p)\right)$$
+\begin{proof}
+Simplemente es usar la regla del producto para derivar al producto interno: $$\x_j(p) g_{i\ell}(p) = \x_j(p)\pint{\x_i(p),\x_\ell(p)} = \pint{\diff_p\x_i(\x_j(p)),\x_\ell(p)}+\pint{\x_i(p),\diff_p\x_\ell(\x_j(p))}$$ Procediendo de manera análoga, obtenemos: \begin{align*}\x_\ell(p) g_{ij}(p)&= \pint{\diff_p\x_i(\x_\ell(p)),\x_j(p)}+\pint{\x_i(p),\diff_p\x_j(\x_\ell(p))} \\ \x_i(p) g_{j\ell}(p)&= \pint{\diff_p\x_j(\x_i(p)),\x_\ell(p)}+\pint{\x_j(p),\diff_p\x_\ell(\x_i(p))}\end{align*} Sumando alternadamente estas tres identidades, se tiene: $$\x_j(p) g_{i\ell}(p)-\x_\ell(p) g_{ij}(p)+\x_i(p) g_{ij}(p) = 2\pint{\diff_p\x_i(\x_j(p)),\x_\ell(p)}$$ Multiplicando por $g^{\ell k}(p)$ y sumando sobre $\ell$ se sigue lo deseado.
+\end{proof}
+\end{prop}
+
+\section{Curvas sobre una Superficie}
+
+El objetivo será tratar de usar las cosas que sabemos sobre las curvas para caracterizar a la superficie. Sea $S\subseteq\RR^3$ una superficie y $\sigma:(a,b)\to\RR^3$ una curva parametrizada por longitud de arco tal que $\sigma(s)\in S$ para todo $s\in (a,b)$. En el caso de las curvas planas sabíamos que la curvatura tenía más información: el signo. Moralmente, una superficie no es más que un plano deformado, así que si tenemos una curva dentro de una superficie la situación debería ser análoga a una curva plana. En este caso, las curvas planas tienen un signo porque dada la tangente $\T(s)$ hay una manera natural de completarlo a una base de $\RR^2$. Para una curva contenida en una superficie, tenemos la tangente $\T(s)$ y el campo normal $\n(\sigma(s))$. Estas dos direcciones son ortogonales, pues $\T(s)$ es la velocidad de una curva y así $\T(s)\in\mathrm{T}_{\sigma(s)}S$. Ahora sí tenemos una elección canónica para un vector $\M(s)$ para completar a una base ortonormal orientada. Sólo debemos tomar $\M(s)=\n(\sigma(s))\wedge\T(s)$. A esta elección de normal a la curva la denominamos la \textbf{norma intrínseca} de $\sigma$ en $S$.
+
+Ahora bien, como $\{\T(s),\M(s),\n(\sigma(s))\}$ forma una base ortonormal orientada, podemos escribir a $\T'(s)$ en esa base. Como $\norm{\T(s)}^2=1$ para todo $s$, derivando el producto interno $\pint{\T(s),\T(s)}$ se obtiene que $\pint{\T(s),\T'(s)}=0$. Entonces, tenemos que $\T'(s)=\kappa_g(s)\M(s) + \kappa_n(s)\n(\sigma(s))$. A $\kappa_g$ la llamamos la \textbf{curvatura geodésica} mientras que a $\kappa_n$ la llamamos la \textbf{curvatura normal}. Notemos que, por el Teorema de Pitágoras, $\kappa(s)=\norm{\T'(s)} = \sqrt{\kappa_g^2(s) + \kappa_n^2(s)}$. 
+
+Supongamos que $\x:U\to S$ es una carta y que la traza de $\sigma$ está contenida en la traza de la carta. Es decir, $\sigma((a,b))\subseteq\x(U)$. Sean $\sigma^1,\sigma^2:(a,b)\to\RR$ funciones tales que $\x^{-1}(\sigma(s))=(\sigma^1(s),\sigma^2(s))$ (esto podemos hacerlo por el clásico argumento de ensanchar con la Proposición ~\ref{prop::ensanchetecnico}). Las funciones $\sigma^1,\sigma^2$ resultan diferenciables y se denominan las \textbf{funciones coordenadas} de la curva. Es decir, $\sigma(s)=\x(\sigma^1(s),\sigma^2(s))$. Derivando y usando la regla de la cadena, $\sigma'(s)=\displaystyle\sum_{i=1}^2 \partial_i\x(\sigma^1(s),\sigma^2(s))(\sigma^i)'(s) = \displaystyle\sum_{i=1}^2 (\sigma^i)'(s)\x_i(\sigma(s))$. Notemos que $\left.\dfrac{\diff}{\diff s}\right\rvert_{s=s_0} \x_i(\sigma(s)) = \diff_{\sigma(s_0)}\x_i(\sigma'(s_0))$. Usando esto y la regla de la cadena, podemos volver a derivar y así $\sigma''(s)=\displaystyle\sum_{i=1}^2 (\sigma^i)''(s)\x_i(\sigma(s)) + \displaystyle\sum_{i,j=1}^2 (\sigma^j)'(s)(\sigma^i)'(s) \diff_{\sigma(s)}\x_i(\x_j(\sigma(s)))$. Recordando que $\diff_p \x_i(\x_j(p)) = \displaystyle\sum_{k=1}^2 \Gamma_{ij}^{\;\;k}(p)\x_k(p) + L_{ij}(p)\n(p)$ y manipulando la suma, obtenemos que: $$\sigma''=\left(\displaystyle\sum_{i,j=1}^2 (\sigma^i)'(\sigma^j)'L_{ij}\right)\n + \displaystyle\sum_{k=1}^2 \left((\sigma^k)'' + \displaystyle\sum_{i,j=1}^2 \Gamma_{ij}^{\;\;k}(\sigma^i)'(\sigma^j)'\right)\x_k$$ donde cada función está evaluada en el único lugar que podría estarlo. Esto implica que: $$\kappa_n = \displaystyle\sum_{i,j=1}^2 (\sigma^i)'(\sigma^j)'L_{ij} = \displaystyle\sum_{i,j,\ell=1}^2 (\sigma^i)'(\sigma^j)'L^{\ell}_{\;j}g_{\ell i} = \pint{L\sigma',\sigma'}$$ Esto nos motiva a considerar la forma cuadrática $\mathrm{II}_p(X,Y)=\pint{LX,Y}$, que llamaremos la \textbf{Segunda Forma Fundamental}. Notemos que la curvatura normal $\kappa_n$ sólo depende de la velocidad en el punto. Es decir, la curvatura normal no ve la aceleración y por lo tanto toda esa información está contenida en la curvatura geodésica.
+
+\begin{prop}
+La curvatura geodésica de una curva en una superficie $S\subseteq\RR^3$ es intrínseca.
+\begin{proof}
+Ya vimos que si $\sigma$ es una curva sobre $S$ parametrizada por longitud de arco entonces podemos escribir a $\T'(s)=\sigma''(s)$ en términos de la base $\{\x_1(s),\x_2(s),\n(\sigma(s))\}$ como: $$\sigma''=\left(\displaystyle\sum_{i,j=1}^2 (\sigma^i)'(\sigma^j)'L_{ij}\right)\n + \displaystyle\sum_{k=1}^2 \left((\sigma^k)'' + \displaystyle\sum_{i,j=1}^2 \Gamma_{ij}^{\;\;k}(\sigma^i)'(\sigma^j)'\right)\x_k$$ Como las direcciones $\x_1(s),\x_2(s)$ son ortogonales a $\n(s)$, debemos tener que: $$\kappa_g(s)\M(s) = \displaystyle\sum_{k=1}^2\left( (\sigma^k)''(s) + \displaystyle\sum_{i,j=1}^2 \Gamma_{ij}^{\;\;k}(\sigma(s)) (\sigma^i)'(s)(\sigma^j)'(s)\right)\x_k(s)$$ Ahora bien, tenemos que $\kappa_g(s)=\pint{\kappa_g(s)\M(s),\M(s)} = \pint{\kappa_g(s)\M(s),\n(\sigma(s))\wedge\T(s)}$. Recordando que $\pint{u,v\wedge w} = \det\begin{pmatrix} | & | & | \\ u & v & w \\ | & | & | \end{pmatrix}:=[u|v|w]$, obtenemos la fórmula $$\kappa_g(s)=\displaystyle\sum_{k=1}^2 \left( (\sigma^k)''(s) + \displaystyle\sum_{i,j=1}^2 \Gamma_{ij}^{\;\;k}(\sigma(s)) (\sigma^i)'(s)(\sigma^j)'(s)\right) [\x_k(s)|\n(\sigma(s))|\T(s)]$$
+Por otra parte, si $\varepsilon_{ij}(s)=\det[\n(\sigma(s))|\x_i(s)|\x_j(s)]$, entonces $\varepsilon_{12}(s)=-\varepsilon_{21}(s)=g(s)$, donde $g$ es el determinante de la matriz asociada a la Primera Forma Fundamental, y $\varepsilon_{11}=\varepsilon_{22}=0$. Esto nos dice que $\varepsilon$ es intrínseco, pues los coeficientes métricos lo son. Como podemos escribir $\T(s)=\sigma'(s)=\displaystyle\sum_{\ell=1}^2 (\sigma^\ell)'(s)\x_{\ell}(\sigma(s))$, se tiene que: \begin{align*}\kappa_g(s)&=\displaystyle\sum_{\ell=1}^2 \left((\sigma^k)''(s) + \displaystyle\sum_{i,j=1}^2 \Gamma_{ij}^{\;\;k}(\sigma(s)) (\sigma^i)'(s)(\sigma^j)'(s)\right)(\sigma^\ell)'(s)[\x_k(s),\n(\sigma(s),\x_\ell(s)]\\&=\displaystyle\sum_{\ell=1}^2 \left((\sigma^k)''(s) + \displaystyle\sum_{i,j=1}^2 \Gamma_{ij}^{\;\;k}(\sigma(s)) (\sigma^i)'(s)(\sigma^j)'(s)\right)(\sigma^\ell)'(s)\varepsilon_{\ell k}(s)\end{align*} Por lo tanto, expresamos a $\kappa_g(s)$ en términos de cosas intrínsecas, debe ser intrínseco. Como queríamos probar.
+\end{proof}
+\end{prop}
+
+Si bien la curvatura geodésica es intrínseca, en general las expresiones intrínsecas son complicadas. Veamos una fórmula extrínseca para la curvatura geodésica que, en términos calculatorios, es mucho más simple y útil.
+
+\begin{prop}\label{prop::curvaturageodesicaextrinseca}
+Si $S\subseteq\RR^3$ es una superficie y $\sigma:(a,b)\to S$ es una curva sobre $S$, entonces $$\kappa_g(s)=\kappa(s)\pint{\n(\sigma(s)),\B(s)}$$ donde $\kappa$ es la curvatura de $\sigma$ y $\B$ su vector binormal.
+\begin{proof}
+Como $\T'(s)=\kappa_g(s)\M(s)+\kappa_n(s)\n(\sigma)$ y $\pint{\n(\sigma(s)),\M(s)}=0$, tenemos que $\kappa_g(s)=\pint{\T'(s),\M(s)}$. Ahora bien, notemos que: \begin{align*}\pint{\T'(s),\M(s)}&=\pint{\T'(s),\n(\sigma(s))\wedge\T(s)}\\&=[\T'(s)|\n(\sigma(s))|\T(s)]\\&=[\n(\sigma(s))|\T(s)|\T'(s)] \\&= \pint{\n(\sigma(s)),\T(s)\wedge\T'(s)} \\&= \kappa(s)\pint{\n(\sigma(s)),\T(s)\wedge\N(s)}\\&=\kappa(s)\pint{\n(\sigma(s)),\B(s)}\end{align*} Esto concluye la demostración.
+\end{proof}
+\end{prop}
+
+Ya dijimos que moralmente la situación de una superficie debería ser como la del plano. Queremos definir el análogo a una recta dentro de una superficie. Para esto, queremos que no esté curvada \textit{intrínsecamente}. Como la parte intrínseca de la curvatura es la geodésica, podríamos pensar que una curva es recta dentro de la superficie si su curvatura geodésica es $0$. Es decir, si solo se deforma como la superficie, en la dirección de la normal. Esto motiva la siguiente definición:
+
+\begin{defn}
+Una curva $\sigma:(a,b)\to S$ parametrizada por longitud de arco en una superficie $S\subseteq\RR^3$ es una \textbf{geodésica} si su curvatura geodésica es nula.
+\end{defn}
+
+\begin{prop}
+Una curva $\sigma$ en $S$ es una geodésica si y sólo si $[\n(\sigma(s))|\T(s)|\T'(s)]=0$.
+\begin{proof}
+Esto es claro, pues siguiendo la demostración de la Proposición ~\ref{prop::curvaturageodesicaextrinseca} tenemos que $\kappa_g(s)=[\n(\sigma(s))|\T(s)|\T'(s)]$.
+\end{proof}
+\end{prop}
+
+\begin{obs}
+Lo que nos dice la Proposición anterior es que una curva es geodésica si y sólo si la normal a la curva $\N$ es paralela a la normal a la superficie $\n$. Es decir, la superficie \textbf{no} ve la forma en la que cambia la tangente, que en parte fue lo que nos motivó a definir las geodésicas así.
+\end{obs}
+
+\begin{ex}\textcolor{red}{Dibujar esto y demostrarlo!}
+En la esfera $S^2$ los \textbf{círculos máximos} (intersecciones de planos que pasan por el origen con $S^2$) son geodésicas.
+
+Si una superficie $S$ tiene un plano de simetría $\Pi$, entonces la curva $\Pi\cap S$ es una geodésica.
+
+Si $S$ es una \textbf{superficie de revolución}, entonces los círculos de los puntos críticos son geodésicas.
+
+Si $R\subseteq S$ es una recta contenida en $S$, entonces $R$ es una geodésica. Por ejemplo, en un hiperboloide de una hoja.
+\end{ex}
+
+\begin{prop}
+Ser geodésica es una propiedad intrínseca de la curva.
+\begin{proof}
+Sea $\sigma:(a,b)\to S$ una geodésica y $f:S\to S'$ una isometría. Veamos que $f\circ\sigma$ es una geodésica. En efecto, $f\circ\sigma$ está parametrizada por longitud de arco, pues la longitud de las curvas se preserva por isometrías (ya que depende de la Primera Forma Fundamental que es intrínseca). Por otra parte, su curvatura geodésica es la misma que la de $\sigma$ por ser la curvatura geodésica intrínseca. Por lo tanto, $f\circ\sigma$ es una curva parametrizada por longitud de arco con curvatura geodésica nula. Esto implica que $f\circ\sigma$ es una geodésica.
+\end{proof}
+\end{prop}
